@@ -2,6 +2,9 @@ import { Nav, Navbar, NavbarBrand, NavItem, NavLink } from "reactstrap";
 import "./App.css";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "bootstrap-icons/font/bootstrap-icons.css";
+import { Route, Routes } from "react-router-dom";
+import Homepage from "./Pages/Homepage";
+import Favorites from "./Pages/Favorites";
 
 function App() {
 	return (
@@ -26,6 +29,10 @@ function App() {
 					</NavItem>
 				</Nav>
 			</Navbar>
+			<Routes>
+				<Route path="/" element={<Homepage />}/>
+				<Route path="/favorites" element={<Favorites/>} />
+			</Routes>
 		</div>
 	);
 }
