@@ -1,8 +1,12 @@
-import React from 'react'
-import { Form } from 'reactstrap'
+import React, { useState } from 'react'
+import { Button } from 'reactstrap';
 
 export default function SignIn() {
+  const [modal,setModal] = useState(false);
+  const toggle = () => setModal(!modal);
   return (
-    <div>SignIn</div>
+    <div>
+      <Button onClick={toggle}></Button>
+    </div>
   )
 }
