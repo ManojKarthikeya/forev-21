@@ -25,7 +25,6 @@ export default function SignUp(props) {
 	const { signUP } = useAuth();
 	const [error, setError] = useState("");
 	const [loading, setLoading] = useState(false);
-	const [agree, setAgree] = useState(false);
 
 	async function handleSubmit(e) {
 		e.preventDefault();
@@ -76,7 +75,7 @@ export default function SignUp(props) {
 							<Input
 								type="email"
 								id="email"
-								ref={emailRef}
+								innerRef={emailRef}
 								required
 							></Input>
 						</FormGroup>
@@ -85,7 +84,7 @@ export default function SignUp(props) {
 							<Input
 								type="password"
 								id="password"
-								ref={passwordRef}
+								innerRef={passwordRef}
 								required
 							></Input>
 						</FormGroup>
@@ -96,7 +95,7 @@ export default function SignUp(props) {
 							<Input
 								type="password"
 								id="password-confirmation"
-								ref={passwordConfirmRef}
+								innerRef={passwordConfirmRef}
 								required
 							></Input>
 						</FormGroup>
