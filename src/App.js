@@ -5,19 +5,20 @@ import "bootstrap-icons/font/bootstrap-icons.css";
 import { Route, Routes } from "react-router-dom";
 import Homepage from "./Pages/Homepage";
 import Favorites from "./Pages/Favorites";
-import SignIn from "./Components/SignIn";
 import { useState } from "react";
 import { AuthProvider } from "./contexts/AuthContext";
+import SignUp from "./Components/SignUp";
+import SignIn from "./Components/SignIn";
 
 function App() {
+	const [log, setLog] = useState(true);
 	const [modal, setModal] = useState(false);
 	const toggle = () => setModal(!modal);
 	return (
 		<AuthProvider>
 			<div className="App">
-				<Modal isOpen={modal} toggle={toggle}>
-					{" "}
-					<SignIn togglefun={toggle}/>{" "}
+				<Modal isOpen={modal} centered toggle={toggle}>
+					{log ? <SignIn log={log} setLog={setLog} tooglefun={toggle} /> : <SignUp log={log} setLog={setLog} tooglefun={toggle} />}
 				</Modal>
 				<Navbar>
 					<NavbarBrand>Spandu & Manu</NavbarBrand>

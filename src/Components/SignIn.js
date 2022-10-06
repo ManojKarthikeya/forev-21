@@ -1,9 +1,8 @@
-import React, { useRef, useState } from 'react'
-import { Alert, Button, Card, CardBody, Form, FormGroup, Input, Label } from 'reactstrap'
-import { useAuth } from '../contexts/AuthContext'
-// import { Button, Modal, ModalBody, ModalFooter, ModalHeader } from 'reactstrap';
+import React from "react";
+import { Card, CardBody, CardFooter, CardHeader, CardLink, CardText, Col, Row } from "reactstrap";
 
 export default function SignIn(props) {
+<<<<<<< HEAD
   const emailRef = useRef()
   const passwordRef = useRef()
   const passwordConfirmRef = useRef()
@@ -63,5 +62,43 @@ export default function SignIn(props) {
       <div className='w-100 text-centre mt-2'>Already have an account? Log In</div>
     </>
   )
+=======
+	return (
+		<React.Fragment>
+			<Card>
+				<CardHeader>
+					<Row>
+						<Col>
+							<h2 className="display-6 mx-3">Log in</h2>
+						</Col>
+						<Col className="text-sm-end">
+							<h3>
+								<i
+									onClick={() => {
+										props.togglefun();
+									}}
+									style={{ cursor: "pointer" }}
+									className="bi bi-x "
+								></i>
+							</h3>
+						</Col>
+					</Row>
+				</CardHeader>
+				<CardBody className="px-5">hehe</CardBody>
+				<CardFooter>
+					<CardText className="mx-3 p-1">
+						Don't have an account?{" "}
+						<CardLink
+							onClick={() => {
+								props.setLog(!props.log);
+							}}
+						>
+							Register
+						</CardLink>
+					</CardText>
+				</CardFooter>
+			</Card>
+		</React.Fragment>
+	);
+>>>>>>> 443d19b567381f9c53f88674abda1bb66021ea82
 }
-
