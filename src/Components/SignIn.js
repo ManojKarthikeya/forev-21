@@ -1,30 +1,43 @@
 import React, { useRef, useState } from 'react'
-import { Button, Card, CardBody, Form, FormGroup, Input, Label } from 'reactstrap'
+import { Alert, Button, Card, CardBody, Form, FormGroup, Input, Label } from 'reactstrap'
 import { useAuth } from '../contexts/AuthContext'
 // import { Button, Modal, ModalBody, ModalFooter, ModalHeader } from 'reactstrap';
 
-export default function SignIn() {
+export default function SignIn(props) {
   const emailRef = useRef()
   const passwordRef = useRef()
   const passwordConfirmRef = useRef()
-  const {signup} = useAuth()
+  const {signUP} = useAuth()
   const [error, setError] = useState('')
+  const [loading, setLoading] = useState(false)
 
-  function handleSubmit(e) {
+  async function handleSubmit(e) {
     e.preventDefault()
 
     if(passwordRef.current.value !== passwordConfirmRef.current.value){
-      return setError('passwords do not match')
+      console.log('hello')
+      return setError('Passwords do not match')
     }
 
-    signup(emailRef.current.value, passwordRef.current.value)
+    try{
+      setError('')
+      setLoading(true)
+      await signUP(emailRef.current.value, passwordRef.current.value)
+    } catch(e){
+      console.log(e)
+      setError('Failed to create an account')
+    }
+
+    props.togglefun()
+    setLoading(false)
   }
   return (
     <>
       <Card>
         <CardBody>
           <h2 className='text-centre mb-4' >Sign Up</h2>
-          <Form>
+          {error && <Alert color='danger'>{error}</Alert>}
+          <Form onSubmit={handleSubmit}>
             <FormGroup >
               <Label for='email'>Email</Label>
               <Input type= 'email' id='email' 
@@ -43,7 +56,7 @@ export default function SignIn() {
               ref={passwordConfirmRef} required
               ></Input>
             </FormGroup>
-            <Button color='primary' className='w-100'>Sign Up</Button>
+            <Button disabled={loading} color='primary' className='w-100'>Sign Up</Button>
           </Form>
         </CardBody>
       </Card>

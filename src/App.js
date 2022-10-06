@@ -17,7 +17,7 @@ function App() {
 			<div className="App">
 				<Modal isOpen={modal} toggle={toggle}>
 					{" "}
-					<SignIn />{" "}
+					<SignIn togglefun={toggle}/>{" "}
 				</Modal>
 				<Navbar>
 					<NavbarBrand>Spandu & Manu</NavbarBrand>
