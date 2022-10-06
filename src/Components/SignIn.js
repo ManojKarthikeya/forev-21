@@ -41,19 +41,19 @@ export default function SignIn(props) {
             <FormGroup >
               <Label for='email'>Email</Label>
               <Input type= 'email' id='email' 
-              ref={emailRef} required
+              innerRef={emailRef} required
               ></Input>
             </FormGroup>
             <FormGroup >
               <Label for='password'>Password</Label>
               <Input type= 'password' id='password' 
-              ref={passwordRef} required
+              innerRef={passwordRef} required
               ></Input>
             </FormGroup>
             <FormGroup >
               <Label for='password-confirmation'>Password confirmation</Label>
               <Input type= 'password' id='password-confirmation' 
-              ref={passwordConfirmRef} required
+              innerRef={passwordConfirmRef} required
               ></Input>
             </FormGroup>
             <Button disabled={loading} color='primary' className='w-100'>Sign Up</Button>
