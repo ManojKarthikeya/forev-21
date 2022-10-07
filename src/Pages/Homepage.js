@@ -24,8 +24,6 @@ export default function Homepage() {
 		}
 	}, [products]);
 
-	console.log(productList);
-
 	return (
 		<React.Fragment>
 			<Container>
