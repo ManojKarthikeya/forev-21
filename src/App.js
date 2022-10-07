@@ -18,7 +18,7 @@ function App() {
 		<AuthProvider>
 			<div className="App">
 				<Modal isOpen={modal} centered toggle={toggle}>
-					{log ? <SignIn log={log} setLog={setLog} tooglefun={toggle} /> : <SignUp log={log} setLog={setLog} tooglefun={toggle} />}
+					{log ? <SignIn log={log} setLog={setLog} togglefun={toggle} /> : <SignUp log={log} setLog={setLog} togglefun={toggle} />}
 				</Modal>
 				<Navbar>
 					<NavbarBrand>Spandu & Manu</NavbarBrand>

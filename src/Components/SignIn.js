@@ -30,6 +30,7 @@ export default function SignIn(props) {
     try {
       setError("");
       setLoading(true);
+      console.log('logging in')
       await logIn(emailRef.current.value, passwordRef.current.value);
     } catch {
       setError("Failed to log in");
@@ -74,12 +75,12 @@ export default function SignIn(props) {
                 innerRef={passwordRef}
               ></Input>
             </FormGroup>
-          </Form>
-          <Row className="d-flex justify-content-center">
+            <Row className="d-flex justify-content-center">
             <Button disabled={loading} color="success" className="w-75 my-2">
               Log In
             </Button>
           </Row>
+          </Form>
         </CardBody>
         <CardFooter>
           <CardText className="mx-3 p-1">
