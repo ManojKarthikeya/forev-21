@@ -2,7 +2,7 @@ import { Modal, Nav, Navbar, NavbarBrand, NavItem, NavLink } from "reactstrap";
 import "./App.css";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "bootstrap-icons/font/bootstrap-icons.css";
-import { Route, Routes, useAsyncError } from "react-router-dom";
+import { Link, Route, Routes } from "react-router-dom";
 import Homepage from "./Pages/Homepage";
 import Favorites from "./Pages/Favorites";
 import { useState } from "react";
@@ -15,15 +15,14 @@ import { auth } from "./firebase";
 
 function App() {
 	const [user, setUser] = useState(null);
-	onAuthStateChanged(auth, (user) => {
-		if (!user) {
-			setUser(user)
+	onAuthStateChanged(auth, (userProf) => {
+		if (userProf && !user) {
+			setUser(userProf);
 		}
 	});
 	const [log, setLog] = useState(true);
 	const [modal, setModal] = useState(false);
 	const toggle = () => setModal(!modal);
-	console.log(user)
 	return (
 		<AuthProvider>
 			<div className="App">
@@ -38,10 +37,26 @@ function App() {
 					<NavbarBrand>Spandu & Manu</NavbarBrand>
 					<Nav>
 						<NavItem className="align-items-center">
-							<NavLink className="text-black" onClick={toggle}>
-								<i className="bi bi-person-fill mx-2"></i>Sign
-								In
-							</NavLink>
+							{user ? (
+								<NavLink>
+									<Link
+										style={{ textDecoration: "none" }}
+										className="text-black"
+										to="/profile"
+									>
+										<i className="bi bi-person-fill mx-2"></i>{" "}
+										My Account
+									</Link>
+								</NavLink>
+							) : (
+								<NavLink
+									className="text-black"
+									onClick={toggle}
+								>
+									<i className="bi bi-person-fill mx-2"></i>
+									Sign In
+								</NavLink>
+							)}
 						</NavItem>
 						<NavItem>
 							<NavLink className="text-black">

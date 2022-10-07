@@ -1,7 +1,8 @@
-import React from 'react'
+import React from "react";
 
 export default function Profile(props) {
-  return (
-    <div>{console.log(props)}</div>
-  )
+	return (
+		<div>Profile
+		</div>
+	);
 }
