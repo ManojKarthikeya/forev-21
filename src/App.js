@@ -12,6 +12,8 @@ import SignIn from "./Components/SignIn";
 import Profile from "./Components/Profile";
 import { onAuthStateChanged } from "firebase/auth";
 import { auth } from "./firebase";
+import Orders from "./Components/Orders";
+import AccountSettings from "./Components/AccountSettings";
 
 function App() {
 	const [user, setUser] = useState(null);
@@ -34,7 +36,7 @@ function App() {
 					)}
 				</Modal>
 				<Navbar>
-					<NavbarBrand>Spandu & Manu</NavbarBrand>
+					<NavbarBrand href="/">Spandu & Manu</NavbarBrand>
 					<Nav>
 						<NavItem className="align-items-center">
 							{user ? (
@@ -73,9 +75,12 @@ function App() {
 					</Nav>
 				</Navbar>
 				<Routes>
-					<Route path="/" element={<Homepage />} />
-					<Route path="/favorites" element={<Favorites />} />
-					<Route path="/profile" element={<Profile user={user} />} />
+					<Route path="" element={<Homepage />} />
+					<Route path="favorites" element={<Favorites />} />
+					<Route path="profile" element={<Profile user={user} />}>
+						<Route path="orders" element={<Orders />} />
+						<Route path="settings" element={<AccountSettings />} />
+					</Route>
 				</Routes>
 			</div>
 		</AuthProvider>
