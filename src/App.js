@@ -14,6 +14,7 @@ import { onAuthStateChanged } from "firebase/auth";
 import { auth } from "./firebase";
 import Orders from "./Components/Orders";
 import AccountSettings from "./Components/AccountSettings";
+import Categories from "./Pages/Categories";
 
 function App() {
 	const [user, setUser] = useState(null);
@@ -81,6 +82,7 @@ function App() {
 						<Route path="orders" element={<Orders />} />
 						<Route path="settings" element={<AccountSettings />} />
 					</Route>
+					<Route path="categories" element={<Categories />} />
 				</Routes>
 			</div>
 		</AuthProvider>
