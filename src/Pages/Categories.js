@@ -50,7 +50,7 @@ export default function Categories() {
 										style={{ maxWidth: "50vh" }}
 									>
 										<DropdownItem
-											className="mx-1"
+											className=""
 											style={{
 												color: colors[
 													`${mainCategory.Key}`
