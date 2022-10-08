@@ -1,13 +1,18 @@
 import React from "react";
-import { Route, Routes, Outlet, Link } from "react-router-dom";
-import Orders from "./Orders";
+import { Outlet, Link } from "react-router-dom";
+import { Button } from "reactstrap";
+// import Orders from "./Orders";
 
 export default function Profile(props) {
-	return (
-		<div>
-      <Link to='orders'>Orders</Link>
-      <Link to='settings'>Settings</Link>
+  return (
+    <div>
+      <Link to="orders">
+        <Button>Orders</Button>
+      </Link>
+      <Link to="settings">
+        <Button>Settings</Button>
+      </Link>
       <Outlet />
-		</div>
-	);
+    </div>
+  );
 }
