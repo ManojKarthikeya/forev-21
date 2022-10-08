@@ -15,20 +15,21 @@ import { auth } from "./firebase";
 import Orders from "./Components/Orders";
 import AccountSettings from "./Components/AccountSettings";
 import ForgotPassword from "./Components/ForgotPassword";
+import Categories from "./Pages/Categories";
 
 function App() {
-  const [user, setUser] = useState(null);
-  const location = useLocation();
-  const [reRender, setreRender] = useState(1);
-  useEffect(() => {
-    setUser(user);
-  }, [location]);
+	const [user, setUser] = useState(null);
+	const location = useLocation();
+	useEffect(() => {
+		onAuthStateChanged(auth, (userProf) => {
+			if (userProf && !user) {
+				setUser(userProf);
+			} else if (!userProf && user){
+				setUser(null)
+			}
+		});
+	}, [location, user]);
 
-  onAuthStateChanged(auth, (userProf) => {
-    if (userProf && !user) {
-      setUser(userProf);
-    }
-  });
   const [log, setLog] = useState("logIn");
   const [modal, setModal] = useState(false);
   const toggle = () => setModal(!modal);
@@ -46,6 +47,7 @@ function App() {
         </Modal>
         <Navbar>
           <NavbarBrand href="/">Spandu & Manu</NavbarBrand>
+          <Categories/>
           <Nav>
             <NavItem className="align-items-center">
               {user ? (

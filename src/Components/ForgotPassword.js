@@ -62,6 +62,7 @@ export default function ForgotPassword(props) {
           </Row>
         </CardHeader>
         <CardBody className="px-5">
+            {message && <Alert color='success'>{message}</Alert>}
           {error && <Alert color="danger">{error}</Alert>}
           <Form onSubmit={handleSubmit}>
             <FormGroup>
