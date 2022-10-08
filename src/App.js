@@ -14,6 +14,7 @@ import { onAuthStateChanged } from "firebase/auth";
 import { auth } from "./firebase";
 import Orders from "./Components/Orders";
 import AccountSettings from "./Components/AccountSettings";
+import ForgotPassword from "./Components/ForgotPassword";
 import Categories from "./Pages/Categories";
 import Bag from "./Pages/Bag";
 
@@ -30,17 +31,23 @@ function App() {
 		});
 	}, [location, user]);
 
-	const [log, setLog] = useState(true);
+	const [log, setLog] = useState("logIn");
 	const [modal, setModal] = useState(false);
 	const toggle = () => setModal(!modal);
 	return (
 		<AuthProvider>
 			<div className="App">
 				<Modal isOpen={modal} centered toggle={toggle}>
-					{log ? (
+					{log === "logIn" ? (
 						<SignIn log={log} setLog={setLog} togglefun={toggle} />
-					) : (
+					) : log === "signUp" ? (
 						<SignUp log={log} setLog={setLog} togglefun={toggle} />
+					) : (
+						<ForgotPassword
+							log={log}
+							setLog={setLog}
+							togglefun={toggle}
+						/>
 					)}
 				</Modal>
 				<Navbar>
@@ -120,7 +127,7 @@ function App() {
 						<Route path="orders" element={<Orders />} />
 						<Route path="settings" element={<AccountSettings />} />
 					</Route>
-					<Route path='my-bag' element={<Bag />} />
+					<Route path="my-bag" element={<Bag />} />
 				</Routes>
 			</div>
 		</AuthProvider>
