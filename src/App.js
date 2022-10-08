@@ -17,75 +17,82 @@ import AccountSettings from "./Components/AccountSettings";
 import Categories from "./Pages/Categories";
 
 function App() {
-  const [user, setUser] = useState(null);
-  const location = useLocation();
-  const [reRender, setreRender] = useState(1);
-  useEffect(() => {
-    setUser(user);
-  }, [location]);
+	const [user, setUser] = useState(null);
+	const location = useLocation();
+	useEffect(() => {
+		onAuthStateChanged(auth, (userProf) => {
+			if (userProf && !user) {
+				setUser(userProf);
+			} else if (!userProf && user){
+				setUser(null)
+			}
+		});
+	}, [location, user]);
 
-  onAuthStateChanged(auth, (userProf) => {
-    if (userProf && !user) {
-      setUser(userProf);
-    }
-  });
-  const [log, setLog] = useState(true);
-  const [modal, setModal] = useState(false);
-  const toggle = () => setModal(!modal);
-  return (
-    <AuthProvider>
-      <div className="App">
-        <Modal isOpen={modal} centered toggle={toggle}>
-          {log ? (
-            <SignIn log={log} setLog={setLog} togglefun={toggle} />
-          ) : (
-            <SignUp log={log} setLog={setLog} togglefun={toggle} />
-          )}
-        </Modal>
-        <Navbar>
-          <NavbarBrand href="/">Spandu & Manu</NavbarBrand>
-          <Nav>
-            <NavItem className="align-items-center">
-              {user ? (
-                <NavLink>
-                  <Link
-                    style={{ textDecoration: "none" }}
-                    className="text-black"
-                    to="/profile"
-                  >
-                    <i className="bi bi-person-fill mx-2"></i> My Account
-                  </Link>
-                </NavLink>
-              ) : (
-                <NavLink className="text-black" onClick={toggle}>
-                  <i className="bi bi-person-fill mx-2"></i>
-                  Sign In
-                </NavLink>
-              )}
-            </NavItem>
-            <NavItem>
-              <NavLink className="text-black">
-                <i className="bi bi-heart-fill mx-1" /> Favorites
-              </NavLink>
-            </NavItem>
-            <NavItem>
-              <NavLink className="text-black">
-                <i className="bi bi-bag-fill mx-2"></i>Shopping Bag
-              </NavLink>
-            </NavItem>
-          </Nav>
-        </Navbar>
-        <Routes>
-          <Route path="" element={<Homepage />} />
-          <Route path="favorites" element={<Favorites />} />
-          <Route path="profile" element={<Profile user={user} />}>
-            <Route path="orders" element={<Orders />} />
-            <Route path="settings" element={<AccountSettings />} />
-          </Route>
-        </Routes>
-      </div>
-    </AuthProvider>
-  );
+	const [log, setLog] = useState(true);
+	const [modal, setModal] = useState(false);
+	const toggle = () => setModal(!modal);
+	return (
+		<AuthProvider>
+			<div className="App">
+				<Modal isOpen={modal} centered toggle={toggle}>
+					{log ? (
+						<SignIn log={log} setLog={setLog} togglefun={toggle} />
+					) : (
+						<SignUp log={log} setLog={setLog} togglefun={toggle} />
+					)}
+				</Modal>
+				<Navbar>
+					<NavbarBrand href="/">Spandu & Manu</NavbarBrand>
+					<Categories />
+					<Nav>
+						<NavItem className="align-items-center">
+							{user ? (
+								<NavLink>
+									<Link
+										style={{ textDecoration: "none" }}
+										className="text-black"
+										to="/profile"
+									>
+										<i className="bi bi-person-fill mx-2"></i>{" "}
+										My Account
+									</Link>
+								</NavLink>
+							) : (
+								<NavLink
+									className="text-black"
+									onClick={toggle}
+								>
+									<i className="bi bi-person-fill mx-2"></i>
+									Sign In
+								</NavLink>
+							)}
+						</NavItem>
+						<NavItem>
+							<NavLink className="text-black">
+								<i className="bi bi-heart-fill mx-1" />{" "}
+								Favorites
+							</NavLink>
+						</NavItem>
+						<NavItem>
+							<NavLink className="text-black">
+								<i className="bi bi-bag-fill mx-2"></i>Shopping
+								Bag
+							</NavLink>
+						</NavItem>
+					</Nav>
+				</Navbar>
+				<Routes>
+					<Route path="" element={<Homepage />} />
+					<Route path="favorites" element={<Favorites />} />
+					<Route path="profile" element={<Profile user={user} />}>
+						<Route path="orders" element={<Orders />} />
+						<Route path="settings" element={<AccountSettings />} />
+					</Route>
+				</Routes>
+			</div>
+		</AuthProvider>
+	);
 }
 
 export default App;
