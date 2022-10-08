@@ -25,23 +25,29 @@ export default function Categories() {
 				<div key={mainCategory.Key}>
 					<UncontrolledDropdown direction="down">
 						<DropdownToggle
-							className="dropdown-toggle-categories"
-							color="white"
-							href="#"
+							className="dps-text p-1 bg-white border-0 text-secondary mx-1"
+							style={{
+								borderBottomColor: `${
+									colors[mainCategory.Key]
+								} !important`,
+							}}
 						>
-							{mainCategory.Name}
+							<div
+								style={{ fontSize: "15px", fontWeight: "600" }}
+							>
+								{mainCategory.Name}
+							</div>
 						</DropdownToggle>
 						<DropdownMenu
 							className="dropdown-menu-end"
 							key={mainCategory.Key}
-							style={{minWidth: 'fit-content'}}
+							style={{ minWidth: "fit-content" }}
 						>
-							<div className="d-flex cate-boxes flex-column flex-wrap">
+							<div className="d-flex">
 								{mainCategory.ChildMenus.map((subCategory) => (
 									<div
 										key={subCategory.Key}
-										className="d-flex flex-column flex-wrap"
-										style={{maxWidth: '50vh'}}
+										style={{ maxWidth: "50vh" }}
 									>
 										<DropdownItem
 											className="mx-1"
@@ -50,13 +56,17 @@ export default function Categories() {
 													`${mainCategory.Key}`
 												],
 												fontWeight: 700,
+												fontSize: "14px",
 											}}
 										>
 											{subCategory.Name}
 										</DropdownItem>
 										{subCategory.ChildMenus.map(
 											(chinnest) => (
-												<DropdownItem style={{fontSize: '13px'}}>
+												<DropdownItem
+													style={{ fontSize: "12px" }}
+													key={chinnest.Key}
+												>
 													{chinnest.Name}{" "}
 												</DropdownItem>
 											)

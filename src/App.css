@@ -1,7 +1,14 @@
-.page-content{
+.page-content {
     background-color: #f1f5f7;
 }
 
-.cate-boxes{
-    min-width: fit-content;
-}   
+.dps-text {
+    border-radius: 0px;
+    font-weight: 600;
+
+}
+
+.dps-text:focus {
+    border-radius: 0px;
+    border-bottom: 3px solid !important;
+}

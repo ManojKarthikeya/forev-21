@@ -15,6 +15,7 @@ import { auth } from "./firebase";
 import Orders from "./Components/Orders";
 import AccountSettings from "./Components/AccountSettings";
 import Categories from "./Pages/Categories";
+import Bag from "./Pages/Bag";
 
 function App() {
 	const [user, setUser] = useState(null);
@@ -23,8 +24,8 @@ function App() {
 		onAuthStateChanged(auth, (userProf) => {
 			if (userProf && !user) {
 				setUser(userProf);
-			} else if (!userProf && user){
-				setUser(null)
+			} else if (!userProf && user) {
+				setUser(null);
 			}
 		});
 	}, [location, user]);
@@ -43,15 +44,24 @@ function App() {
 					)}
 				</Modal>
 				<Navbar>
-					<NavbarBrand href="/">Spandu & Manu</NavbarBrand>
-					<Categories />
+					<div className="d-flex align-items-center">
+						<NavbarBrand className="mx-2 me-4" href="/">
+							Spandu & Manu
+						</NavbarBrand>
+						<Categories />
+					</div>
 					<Nav>
 						<NavItem className="align-items-center">
 							{user ? (
 								<NavLink>
 									<Link
-										style={{ textDecoration: "none" }}
-										className="text-black"
+										style={{
+											cursor: "pointer",
+											textDecoration: "none",
+											fontSize: "15px",
+											fontWeight: "600",
+										}}
+										className="text-secondary"
 										to="/profile"
 									>
 										<i className="bi bi-person-fill mx-2"></i>{" "}
@@ -60,7 +70,12 @@ function App() {
 								</NavLink>
 							) : (
 								<NavLink
-									className="text-black"
+									style={{
+										cursor: "pointer",
+										fontSize: "15px",
+										fontWeight: "600",
+									}}
+									className="text-secondary"
 									onClick={toggle}
 								>
 									<i className="bi bi-person-fill mx-2"></i>
@@ -69,15 +84,31 @@ function App() {
 							)}
 						</NavItem>
 						<NavItem>
-							<NavLink className="text-black">
+							<NavLink
+								style={{
+									fontSize: "15px",
+									fontWeight: "600",
+								}}
+								className="text-secondary"
+							>
 								<i className="bi bi-heart-fill mx-1" />{" "}
 								Favorites
 							</NavLink>
 						</NavItem>
 						<NavItem>
-							<NavLink className="text-black">
-								<i className="bi bi-bag-fill mx-2"></i>Shopping
-								Bag
+							<NavLink>
+								<Link
+									to="/my-bag"
+									className="text-secondary"
+									style={{
+										textDecoration: "none",
+										fontSize: "15px",
+										fontWeight: "600",
+									}}
+								>
+									<i className="bi bi-bag-fill mx-2"></i>
+									Shopping Bag
+								</Link>
 							</NavLink>
 						</NavItem>
 					</Nav>
@@ -89,6 +120,7 @@ function App() {
 						<Route path="orders" element={<Orders />} />
 						<Route path="settings" element={<AccountSettings />} />
 					</Route>
+					<Route path='my-bag' element={<Bag />} />
 				</Routes>
 			</div>
 		</AuthProvider>
