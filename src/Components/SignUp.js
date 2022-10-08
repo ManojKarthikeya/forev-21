@@ -110,7 +110,7 @@ export default function SignUp(props) {
             Already have an account?{" "}
             <CardLink
               onClick={() => {
-                props.setLog(!props.log);
+                props.setLog("logIn");
               }}
             >
               Log in

@@ -1,41 +1,42 @@
 import React, { useRef, useState } from "react";
 import {
   Alert,
-  Button,
   Card,
   CardBody,
-  CardFooter,
   CardHeader,
-  CardLink,
-  CardText,
   Col,
   Form,
   FormGroup,
-  Input,
   Label,
   Row,
+  Input,
+  Button,
+  CardLink,
+  CardText,
+  CardFooter,
 } from "reactstrap";
 import { useAuth } from "../contexts/AuthContext";
+// import {Link} from 'react-router-dom'
 
-export default function SignIn(props) {
-  const emailRef = useRef();
-  const passwordRef = useRef();
-  const { logIn } = useAuth();
+export default function ForgotPassword(props) {
+  const [message, setMessage] = useState("");
   const [error, setError] = useState("");
+  const emailRef = useRef();
+  const { resetPassword } = useAuth();
   const [loading, setLoading] = useState(false);
 
   async function handleSubmit(e) {
     e.preventDefault();
 
     try {
+      setMessage("");
       setError("");
       setLoading(true);
-      await logIn(emailRef.current.value, passwordRef.current.value);
+      await resetPassword(emailRef.current.value);
+      setMessage("Check your inbox for further instructions");
     } catch {
-      setError("Failed to log in");
+      setError("Failed to reset password");
     }
-
-    props.togglefun();
     setLoading(false);
   }
   return (
@@ -44,16 +45,17 @@ export default function SignIn(props) {
         <CardHeader>
           <Row>
             <Col>
-              <h2 className="display-6 mx-3">Log in</h2>
+              <h2 className="display-6 mx-3 text-nowrap">Password Reset</h2>
             </Col>
             <Col className="text-sm-end">
               <h3>
                 <i
-                  onClick={() => {
-                    props.togglefun();
-                  }}
+                  // onClick={()=>{
+                  //     props.toggleFun()
+
+                  // }}
                   style={{ cursor: "pointer" }}
-                  className="bi bi-x "
+                  className="bi-bi-x"
                 ></i>
               </h3>
             </Col>
@@ -66,31 +68,24 @@ export default function SignIn(props) {
               <Label for="email">Email</Label>
               <Input type="email" id="email" innerRef={emailRef}></Input>
             </FormGroup>
-            <FormGroup>
-              <Label for="password">Password</Label>
-              <Input
-                type="password"
-                id="password"
-                innerRef={passwordRef}
-              ></Input>
-            </FormGroup>
-            <Row className="d-flex justify-content-center">
-              <Button disabled={loading} color="success" className="w-75 my-2">
-                Log In
+            <div className="d-flex justify-content-center">
+              <Button disabled={loading} color="success" className="w-75">
+                Reset Password
               </Button>
-            </Row>
+            </div>
           </Form>
-          <div className="w-100 text-center mt-3">
-            <CardLink
-              onClick={() => {
-                props.setLog("forgotPassword");
-              }}
-            >
-              ForgotPassword
-            </CardLink>
-          </div>
         </CardBody>
         <CardFooter>
+          <CardText className="mx-3 p-1">
+            Already have an account?{" "}
+            <CardLink
+              onClick={() => {
+                props.setLog("logIn");
+              }}
+            >
+              Log in
+            </CardLink>
+          </CardText>
           <CardText className="mx-3 p-1">
             Don't have an account?{" "}
             <CardLink
@@ -98,7 +93,7 @@ export default function SignIn(props) {
                 props.setLog("signUp");
               }}
             >
-              Register
+              SignUp
             </CardLink>
           </CardText>
         </CardFooter>
