@@ -1,19 +1,19 @@
 import React, { useRef, useState } from "react";
 import {
-  Alert,
-  Card,
-  CardBody,
-  CardHeader,
-  Col,
-  Form,
-  FormGroup,
-  Label,
-  Row,
-  Input,
-  Button,
-  CardLink,
-  CardText,
-  CardFooter,
+	Alert,
+	Card,
+	CardBody,
+	CardHeader,
+	Col,
+	Form,
+	FormGroup,
+	Label,
+	Row,
+	Input,
+	Button,
+	CardLink,
+	CardText,
+	CardFooter,
 } from "reactstrap";
 import { useAuth } from "../contexts/AuthContext";
 // import {Link} from 'react-router-dom'
@@ -26,8 +26,8 @@ export default function ForgotPassword(props) {
   const { resetPassword } = useAuth();
   const [loading, setLoading] = useState(false);
 
-  async function handleSubmit(e) {
-    e.preventDefault();
+	async function handleSubmit(e) {
+		e.preventDefault();
 
     try {
       setMessage("");

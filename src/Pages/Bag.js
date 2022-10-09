@@ -55,13 +55,10 @@ export default function Bag({ user }) {
 							<CardBody>
 								<Row className="row-cols-lg-auto g-3 align-items-center">
 									<Col>
-										<Label for="coupon">
-											Use a coupon code:
-										</Label>
 										<Input />
 									</Col>
 									<Col>
-										<Button></Button>
+										<Button>Redeem</Button>
 									</Col>
 								</Row>
 							</CardBody>
