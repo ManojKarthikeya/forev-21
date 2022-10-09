@@ -84,9 +84,9 @@ export default function SignIn(props) {
             <CardLink
               onClick={() => {
                 props.setLog("forgotPassword");
-              }}
+              }} style={{cursor:"pointer"}}
             >
-              ForgotPassword
+              Forgot Password
             </CardLink>
           </div>
         </CardBody>
@@ -96,7 +96,7 @@ export default function SignIn(props) {
             <CardLink
               onClick={() => {
                 props.setLog("signUp");
-              }}
+              }} style={{cursor:"pointer"}}
             >
               Register
             </CardLink>
