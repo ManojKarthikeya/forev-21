@@ -131,11 +131,8 @@ function App() {
 						<Route path="settings" element={<AccountSettings />} />
 					</Route>
 					<Route path="my-bag" element={<Bag />} />
-<<<<<<< HEAD
 					<Route path="/products/:id" element={<List />} />
-=======
 					<Route path="product-page" element={<ProductPage user={user} togglefun={toggle}/>} />
->>>>>>> 2fe93bc76211ae92d0edba6f879803bf5a2f0f08
 				</Routes>
 			</div>
 		</AuthProvider>
