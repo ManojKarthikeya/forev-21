@@ -1,7 +1,7 @@
 import axios from "axios";
 
 const axiosApi = axios.create({
-	baseURL: "https://api.escuelajs.co",
+	baseURL: "https://apidojo-forever21-v1.p.rapidapi.com",
 });
 
 export async function get(url, config = {}) {

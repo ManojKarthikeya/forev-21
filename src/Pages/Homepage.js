@@ -5,24 +5,6 @@ import ProductCard from "../Components/ProductCard";
 import { getProducts } from "../store/actions";
 
 export default function Homepage() {
-	const dispatch = useDispatch();
-	const [productList, setProductList] = useState([]);
-
-	const { products } = useSelector((state) => ({
-		products: state.reducer.products,
-	}));
-
-	useEffect(() => {
-		if (products && !products.length) {
-			dispatch(getProducts());
-		}
-	});
-
-	useEffect(() => {
-		if (products) {
-			setProductList(products);
-		}
-	}, [products]);
 
 	return (
 		<React.Fragment>

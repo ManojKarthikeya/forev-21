@@ -3,9 +3,11 @@ import { getProductsCall } from "../helpers/apiCalls";
 import { getProductsFail, getProductsSuccess } from "./actions";
 import { GET_PRODUCTS } from "./actionTypes";
 
-function* getProducts() {
+function* getProducts({payload : id}) {
 	try {
-		const response = yield call(getProductsCall);
+		console.log('API called!')
+		const response = yield call(getProductsCall, id);
+		console.log(response)
 		yield put(getProductsSuccess(response));
 	} catch (error) {
 		yield put(getProductsFail(error));

@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router-dom";
 import {
 	Card,
 	DropdownItem,
@@ -50,6 +51,7 @@ export default function Categories() {
 										style={{ maxWidth: "50vh" }}
 									>
 										<DropdownItem
+											href={`products/${subCategory.Category}`}
 											className=""
 											style={{
 												color: colors[
@@ -63,12 +65,21 @@ export default function Categories() {
 										</DropdownItem>
 										{subCategory.ChildMenus.map(
 											(chinnest) => (
-												<DropdownItem
-													style={{ fontSize: "12px" }}
-													key={chinnest.Key}
+												<Link
+													to={`products/${chinnest.Category}`}
+													style={{
+														textDecoration: "none",
+													}}
 												>
-													{chinnest.Name}{" "}
-												</DropdownItem>
+													<DropdownItem
+														style={{
+															fontSize: "12px",
+														}}
+														key={chinnest.Key}
+													>
+														{chinnest.Name}{" "}
+													</DropdownItem>
+												</Link>
 											)
 										)}
 									</div>

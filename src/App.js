@@ -17,6 +17,7 @@ import AccountSettings from "./Components/AccountSettings";
 import ForgotPassword from "./Components/ForgotPassword";
 import Categories from "./Pages/Categories";
 import Bag from "./Pages/Bag";
+import List from "./Pages/List";
 
 function App() {
 	const [user, setUser] = useState(null);
@@ -128,6 +129,7 @@ function App() {
 						<Route path="settings" element={<AccountSettings />} />
 					</Route>
 					<Route path="my-bag" element={<Bag />} />
+					<Route path="/products/:id" element={<List />} />
 				</Routes>
 			</div>
 		</AuthProvider>
