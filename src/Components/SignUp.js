@@ -111,7 +111,7 @@ export default function SignUp(props) {
             <CardLink
               onClick={() => {
                 props.setLog("logIn");
-              }}
+              }} style={{cursor:"pointer"}}
             >
               Log in
             </CardLink>

@@ -1,7 +1,8 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
+import { Link } from "react-router-dom";
 import { Container, Row } from "reactstrap";
-import ProductCard from "../Components/ProductCard";
+// import ProductCard from "../Components/ProductCard";
 import { getProducts } from "../store/actions";
 
 export default function Homepage() {
@@ -20,6 +21,7 @@ export default function Homepage() {
 					))} */}
 				</Row>
 			</Container>
+			<Link to='product-page'>Product</Link>
 		</React.Fragment>
 	);
 }
