@@ -8,7 +8,6 @@ import {
 	Col,
 	Container,
 	Input,
-	Label,
 	Row,
 } from "reactstrap";
 

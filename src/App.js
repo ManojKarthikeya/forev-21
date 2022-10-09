@@ -17,6 +17,7 @@ import AccountSettings from "./Components/AccountSettings";
 import ForgotPassword from "./Components/ForgotPassword";
 import Categories from "./Pages/Categories";
 import Bag from "./Pages/Bag";
+import List from "./Pages/List";
 import ProductPage from "./Components/ProductPage";
 import UpdateProfile from "./Components/UpdateProfile";
 
@@ -35,8 +36,10 @@ function App() {
 
 	const [log, setLog] = useState("logIn");
 	const [modal, setModal] = useState(false);
-	const toggle = () => {setModal(!modal);
-  setLog('logIn')};
+	const toggle = () => {
+		setModal(!modal);
+		setLog("logIn");
+	};
 	return (
 		<AuthProvider>
 			<div className="App">
@@ -133,7 +136,11 @@ function App() {
 						</Route>
 					</Route>
 					<Route path="my-bag" element={<Bag />} />
-					<Route path="product-page" element={<ProductPage user={user} togglefun={toggle}/>} />
+					<Route path="/products/:id" element={<List />} />
+					<Route
+						path="product/:id"
+						element={<ProductPage user={user} togglefun={toggle} />}
+					/>
 				</Routes>
 			</div>
 		</AuthProvider>
