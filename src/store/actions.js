@@ -1,4 +1,4 @@
-import { ADD_TO_FAVORITES, EMPTY_PRODUCTS, GET_FAVORITES, GET_PRODUCTS, GET_PRODUCTS_SUCCESS, REMOVE_FROM_FAVORITES } from "./actionTypes";
+import { ADD_TO_FAVORITES, EMPTY_PRODUCT, EMPTY_PRODUCTS, GET_FAVORITES, GET_PRODUCT, GET_PRODUCTS, GET_PRODUCTS_FAIL, GET_PRODUCTS_SUCCESS, GET_PRODUCT_FAIL, GET_PRODUCT_SUCCESS, REMOVE_FROM_FAVORITES } from "./actionTypes";
 
 export const getProducts = (id) => ({
 	type: GET_PRODUCTS,
@@ -15,7 +15,7 @@ export const getProductsSuccess = (products) => ({
 });
 
 export const getProductsFail = (error) => ({
-	type: GET_PRODUCTS_SUCCESS,
+	type: GET_PRODUCTS_FAIL,
 	payload: error,
 });
 
@@ -32,3 +32,22 @@ export const removeFavorite = (favorite) => ({
 	type: REMOVE_FROM_FAVORITES,
 	payload: favorite
 })
+
+export const emptyProduct  = () => ({
+	type : EMPTY_PRODUCT
+})
+
+export const getProductSuccess = (products) => ({
+	type: GET_PRODUCT_SUCCESS,
+	payload: products,
+});
+
+export const getProductFail = (error) => ({
+	type: GET_PRODUCT_FAIL,
+	payload: error,
+});
+
+export const getProduct = (id) => ({
+	type: GET_PRODUCT,
+	payload : id
+});

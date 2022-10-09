@@ -1,9 +1,8 @@
 import axios from "axios";
-import { del, get, post, put } from "./apiHelpers";
 import { XRapidAPIHost, XRapidAPIKey } from "./Key";
 
 export const getProductsCall = async (id) => {
-    let data = {}
+	let data = {};
 	const options = {
 		method: "GET",
 		url: `https://apidojo-forever21-v1.p.rapidapi.com/products/v2/list?categoryName=${id}`,
@@ -16,10 +15,32 @@ export const getProductsCall = async (id) => {
 	await axios
 		.request(options)
 		.then(function (response) {
-			data =  response.data;
+			data = response.data;
 		})
 		.catch(function (error) {
 			console.error(error);
 		});
-    return data
+	return data;
+};
+
+export const getProductCall = async (id) => {
+	let data = {};
+	const options = {
+		method: "GET",
+		url: "https://apidojo-forever21-v1.p.rapidapi.com/products/v2/detail",
+		params: { productId: id },
+		headers: {
+			"X-RapidAPI-Key": XRapidAPIKey,
+			"X-RapidAPI-Host": XRapidAPIHost,
+		},
+	};
+	await axios
+		.request(options)
+		.then(function (response) {
+			data = response.data;
+		})
+		.catch(function (error) {
+			console.error(error);
+		});
+	return data;
 };

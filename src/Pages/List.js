@@ -7,10 +7,8 @@ import {
 	CardBody,
 	CardGroup,
 	CardSubtitle,
-	CardText,
 	CardTitle,
 	Container,
-	Row,
 	Spinner,
 } from "reactstrap";
 import {
@@ -24,43 +22,41 @@ import { productList } from "./../data/list";
 export default function List() {
 	const { id } = useParams();
 	const dispatch = useDispatch();
-	// const [productList, setProductList] = useState([]);
+	const [productList, setProductList] = useState([]);
 	const [favoritesList, setFavoritesList] = useState([]);
 
-	// const { favorites,products } = useSelector((state) => ({
-	// 	products: state.reducer.products,
-	// 	favorites: state.reducer.favorites,
-	// }));
+	const { favorites, products } = useSelector((state) => ({
+		products: state.reducer.products,
+		favorites: state.reducer.favorites,
+	}));
 
-	// useEffect(() => {
-	// 	if (favorites) {
-	// 		setFavoritesList(favorites.map((item) => item.ProductId));
-	// 	}
-	// }, [favorites]);
+	useEffect(() => {
+		if (favorites) {
+			setFavoritesList(favorites.map((item) => item.ProductId));
+		}
+	}, [favorites]);
 
-	// useEffect(() => {
-	// 	if (products) {
-	// 		dispatch(emptyProducts());
-	// 	}
-	// 	if (products && !products.length) {
-	// 		dispatch(getProducts(id));
-	// 		console.log("dispatched!!");
-	// 	}
-	// }, [id, dispatch]);
+	useEffect(() => {
+		if (products) {
+			dispatch(emptyProducts());
+		}
+		if (products && !products.length) {
+			dispatch(getProducts(id));
+			console.log("dispatched!!");
+		}
+	}, [id, dispatch]);
 
-	// useEffect(() => {
-	// 	if (products) {
-	// 		setProductList(products);
-	// 	}
-	// }, [products]);
-	// console.log(favoritesList);
-	// console.log(favorites);
+	useEffect(() => {
+		if (products) {
+			setProductList(products);
+		}
+	}, [products]);
 	if (productList.CatalogProducts) {
 		return (
 			<div className="m-4">
 				<Container>
 					<div className="text-secondary" style={{ fontWeight: 500 }}>
-						Category <i className="bi bi-caret-right-fill"></i>{" "}
+						Spandu & Manu <i className="bi bi-caret-right-fill"></i>{" "}
 						{productList.CategoryDisplayName}{" "}
 					</div>
 					<div className="mx-3 my-3">
@@ -125,7 +121,9 @@ export default function List() {
 										className="d-flex justify-content-between"
 										style={{ marginTop: "auto" }}
 									>
-										<Link to={`/product/${product.ProductId}`}>
+										<Link
+											to={`/product/${product.ProductId}`}
+										>
 											<Button style={{ borderRadius: 0 }}>
 												<i className="bi bi-box-arrow-up-right mx-1"></i>{" "}
 												<span
@@ -142,7 +140,7 @@ export default function List() {
 												<i
 													style={{
 														fontSize: "25px",
-														color: "pink",
+														color: "#de3163"
 													}}
 													onClick={() => {
 														dispatch(
@@ -157,7 +155,7 @@ export default function List() {
 												<i
 													style={{
 														fontSize: "25px",
-														color: "pink",
+														color: "#de3163"
 													}}
 													onClick={() => {
 														dispatch(
@@ -193,7 +191,6 @@ export default function List() {
 					>
 						Loading
 					</Spinner>
-					;
 				</div>
 			</Container>
 		);

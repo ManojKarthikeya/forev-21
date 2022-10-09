@@ -35,8 +35,10 @@ function App() {
 
 	const [log, setLog] = useState("logIn");
 	const [modal, setModal] = useState(false);
-	const toggle = () => {setModal(!modal);
-  setLog('logIn')};
+	const toggle = () => {
+		setModal(!modal);
+		setLog("logIn");
+	};
 	return (
 		<AuthProvider>
 			<div className="App">
@@ -132,7 +134,10 @@ function App() {
 					</Route>
 					<Route path="my-bag" element={<Bag />} />
 					<Route path="/products/:id" element={<List />} />
-					<Route path="product-page" element={<ProductPage user={user} togglefun={toggle}/>} />
+					<Route
+						path="product/:id"
+						element={<ProductPage user={user} togglefun={toggle} />}
+					/>
 				</Routes>
 			</div>
 		</AuthProvider>
