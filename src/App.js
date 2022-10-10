@@ -11,7 +11,7 @@ import SignUp from "./Components/SignUp";
 import SignIn from "./Components/SignIn";
 import Profile from "./Components/Profile";
 import { onAuthStateChanged } from "firebase/auth";
-import { auth } from "./firebase";
+import { auth } from "./firebaseinitial";
 import Orders from "./Components/Orders";
 import AccountSettings from "./Components/AccountSettings";
 import ForgotPassword from "./Components/ForgotPassword";
@@ -20,6 +20,7 @@ import Bag from "./Pages/Bag";
 import List from "./Pages/List";
 import ProductPage from "./Components/ProductPage";
 import UpdateProfile from "./Components/UpdateProfile";
+
 
 function App() {
 	const [user, setUser] = useState(null);
