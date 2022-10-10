@@ -21,8 +21,8 @@ import { productList } from "./../data/list";
 
 export default function List() {
 	const { id } = useParams();
-	const dispatch = useDispatch();
 	const [productList, setProductList] = useState([]);
+	const dispatch = useDispatch();
 	const [favoritesList, setFavoritesList] = useState([]);
 
 	const { favorites, products } = useSelector((state) => ({
@@ -75,7 +75,6 @@ export default function List() {
 							<Card
 								className="col-4"
 								style={{
-									cursor: "pointer",
 									borderRadius: 0,
 									minWidth: "300px",
 									maxWidth: "300px",
@@ -140,7 +139,7 @@ export default function List() {
 												<i
 													style={{
 														fontSize: "25px",
-														color: "#de3163"
+														color: "#de3163",
 													}}
 													onClick={() => {
 														dispatch(
@@ -155,7 +154,7 @@ export default function List() {
 												<i
 													style={{
 														fontSize: "25px",
-														color: "#de3163"
+														color: "#de3163",
 													}}
 													onClick={() => {
 														dispatch(

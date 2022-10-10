@@ -96,15 +96,19 @@ function App() {
 							)}
 						</NavItem>
 						<NavItem>
-							<NavLink
-								style={{
-									fontSize: "15px",
-									fontWeight: "600",
-								}}
-								className="text-secondary"
-							>
-								<i className="bi bi-heart-fill mx-1" />{" "}
-								Favorites
+						<NavLink>
+								<Link
+									to="/favorites"
+									className="text-secondary"
+									style={{
+										textDecoration: "none",
+										fontSize: "15px",
+										fontWeight: "600",
+									}}
+								>
+									<i className="bi bi-heart-fill mx-2"></i>
+									Favorites
+								</Link>
 							</NavLink>
 						</NavItem>
 						<NavItem>

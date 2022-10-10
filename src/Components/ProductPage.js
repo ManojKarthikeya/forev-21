@@ -14,7 +14,7 @@ import {
 	Row,
 	Spinner,
 } from "reactstrap";
-// import { productData } from "../data/productData";
+import { productData } from "../data/productData";
 import {
 	addFavorite,
 	emptyProduct,
@@ -23,10 +23,11 @@ import {
 } from "../store/actions";
 
 export default function ProductPage(props) {
-	const { id } = useParams();
-	const dispatch = useDispatch();
-	const [productData, setProductData] = useState(null);
+	// const { id } = useParams();
+	// const dispatch = useDispatch();
+	// const [productData, setProductData] = useState(null);
 	const [favoritesList, setFavoritesList] = useState([]);
+	
 	const [btclick, setBtclick] = useState(1);
 	const [modal, setModal] = useState(false);
 	const [details, setDetails] = useState();
@@ -35,51 +36,51 @@ export default function ProductPage(props) {
 	};
 	const toggle = () => setModal(!modal);
 
-	const { favorites, product } = useSelector((state) => ({
-		product: state.reducer.product,
-		favorites: state.reducer.favorites,
-	}));
+	// const { favorites, product } = useSelector((state) => ({
+	// 	product: state.reducer.product,
+	// 	favorites: state.reducer.favorites,
+	// }));
 
-	useEffect(() => {
-		if (favorites) {
-			setFavoritesList(favorites.map((item) => item.ProductId));
-		}
-	}, [favorites]);
+	// useEffect(() => {
+	// 	if (favorites) {
+	// 		setFavoritesList(favorites.map((item) => item.ProductId));
+	// 	}
+	// }, [favorites]);
 
-	useEffect(() => {
-		if (!product) {
-			dispatch(getProduct(id));
-			console.log("dispatched!!");
-		}
-	}, [id, dispatch, product]);
+	// useEffect(() => {
+	// 	if (!product) {
+	// 		dispatch(getProduct(id));
+	// 		console.log("dispatched!!");
+	// 	}
+	// }, [id, dispatch, product]);
 
-	useEffect(() => {
-		if (product) {
-			dispatch(emptyProduct());
-		}
-	}, [id]);
+	// useEffect(() => {
+	// 	if (product) {
+	// 		dispatch(emptyProduct());
+	// 	}
+	// }, [id]);
 
-	useEffect(() => {
-		setProductData(product);
-	}, [product]);
+	// useEffect(() => {
+	// 	setProductData(product);
+	// }, [product]);
 
-	useEffect(() => {
-		if (productData) {
-			let tmp = document.createElement("DIV");
-			tmp.innerHTML = productData.product.Description;
-			setDetails(tmp.innerText.split("}").pop().split("."));
-		}
-	}, [productData]);
+	// useEffect(() => {
+	// 	if (productData) {
+	// 		let tmp = document.createElement("DIV");
+	// 		tmp.innerHTML = productData.product.Description;
+	// 		setDetails(tmp.innerText.split("}").pop().split("."));
+	// 	}
+	// }, [productData]);
 
-	useEffect(() => {
-		if (favorites) {
-			setFavoritesList(favorites.map((item) => item.ProductId));
-		}
-	}, [favorites]);
+	// useEffect(() => {
+	// 	if (favorites) {
+	// 		setFavoritesList(favorites.map((item) => item.ProductId));
+	// 	}
+	// }, [favorites]);
 
-	console.log(id);
-	console.log(product);
-
+	// console.log(id);
+	// console.log(product);
+	console.log(productData)
 	if (!productData) {
 		return (
 			<Container fluid>
@@ -338,11 +339,11 @@ export default function ProductPage(props) {
 												) ? (
 													<Button
 														onClick={() => {
-															dispatch(
-																removeFavorite(
-																	productData.product
-																)
-															);
+															// dispatch(
+															// 	removeFavorite(
+															// 		productData.product
+															// 	)
+															// );
 														}}
 														style={{
 															color: "#de3163",
@@ -361,11 +362,11 @@ export default function ProductPage(props) {
 												) : (
 													<Button
 														onClick={() => {
-															dispatch(
-																addFavorite(
-																	productData.product
-																)
-															);
+															// dispatch(
+															// 	addFavorite(
+															// 		productData.product
+															// 	)
+															// );
 														}}
 														style={{
 															border: 0,

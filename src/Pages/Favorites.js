@@ -1,17 +1,147 @@
-import React from "react";
-import { Col, Container, Row } from "reactstrap";
+import React, { useEffect, useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { Link } from "react-router-dom";
+import {
+	Button,
+	Card,
+	CardBody,
+	CardGroup,
+	CardSubtitle,
+	CardTitle,
+	Col,
+	Container,
+	Row,
+} from "reactstrap";
+import { addFavorite, removeFavorite } from "../store/actions";
 
 export default function Favorites() {
+	const dispatch = useDispatch();
+	const [favoritesList, setFavoritesList] = useState([]);
+	const [favoritesIdList, setFavoritesIdList] = useState([]);
+
+	const { favorites } = useSelector((state) => ({
+		favorites: state.reducer.favorites,
+	}));
+
+	useEffect(() => {
+		setFavoritesList(favorites);
+		setFavoritesIdList(favorites.map((item) => item.ProductId));
+	}, [favorites]);
+
+	console.log(favorites);
 	return (
-		<div className="page-content">
+		<div>
 			<Container>
-				<Row>
-					<Col className="font-weight-800 display-5">Favorites</Col>
-				</Row>
-				<Row>
-					<Col> All your favorites in one place.
-                    </Col>
-				</Row>
+				{/* <div className="text-secondary" style={{ fontWeight: 500 }}>
+						Spandu & Manu <i className="bi bi-caret-right-fill"></i>{" "}
+						{productList.CategoryDisplayName}{" "}
+					</div> */}
+				<div className="mx-3 my-3">
+					<div className="display-5" style={{ fontWeight: 700 }}>
+						Favorites
+					</div>
+					<div className="text-secondary" style={{ fontWeight: 700 }}>
+						All your selected Favorites at one place.
+					</div>
+				</div>
+				<CardGroup>
+					{favoritesList.map((product) => (
+						<Card
+							className="col-4"
+							style={{
+								borderRadius: 0,
+								minWidth: "300px",
+								maxWidth: "300px",
+							}}
+							onClick={() => {
+								console.log("asdasd");
+							}}
+						>
+							<img
+								className="m-3 mb-0"
+								src={`${product.DefaultProductImage}`}
+								alt="img"
+							/>
+							<CardBody className="d-flex flex-column">
+								<div>
+									<CardTitle className="m-0">
+										<div
+											style={{
+												fontWeight: 700,
+											}}
+										>
+											{product.DisplayName}
+										</div>
+									</CardTitle>
+									<CardSubtitle
+										className="text-secondary"
+										style={{ fontWeight: 700 }}
+									>
+										<div className="d-flex justify-content-between mt-1 mb-2">
+											<span>{product.Brand}</span>
+											<span
+												style={{
+													fontSize: "19px",
+													fontWeight: "500",
+												}}
+											>
+												${product.ListPrice}
+											</span>
+										</div>
+									</CardSubtitle>
+								</div>
+								<div
+									className="d-flex justify-content-between"
+									style={{ marginTop: "auto" }}
+								>
+									<div>
+										<Button color="success" className="me-1" style={{ borderRadius: 0 }}>
+											<i className="bi bi-bag mx-2"></i>Add to Bag
+										</Button>
+										<Link
+											to={`/product/${product.ProductId}`}
+										>
+											<Button style={{ borderRadius: 0 }}>
+												<i className="bi bi-box-arrow-up-right mx-1"></i>{" "}
+											</Button>
+										</Link>
+									</div>
+									<div>
+										{favoritesIdList.includes(
+											product.ProductId
+										) ? (
+											<i
+												style={{
+													fontSize: "25px",
+													color: "#de3163",
+												}}
+												onClick={() => {
+													dispatch(
+														removeFavorite(product)
+													);
+												}}
+												className="bi bi-heart-fill"
+											></i>
+										) : (
+											<i
+												style={{
+													fontSize: "25px",
+													color: "#de3163",
+												}}
+												onClick={() => {
+													dispatch(
+														addFavorite(product)
+													);
+												}}
+												className="bi bi-heart text-sm-end"
+											></i>
+										)}
+									</div>
+								</div>
+							</CardBody>
+						</Card>
+					))}
+				</CardGroup>
 			</Container>
 		</div>
 	);
