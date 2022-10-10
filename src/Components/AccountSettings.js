@@ -1,7 +1,8 @@
 import React, { useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { Link, Outlet, useNavigate } from "react-router-dom";
 import { Alert, Button, Container } from "reactstrap";
 import { useAuth } from "../contexts/AuthContext";
+import UpdateProfile from "./UpdateProfile";
 
 export default function AccountSettings() {
   const [error, setError] = useState(``);
@@ -19,11 +20,12 @@ export default function AccountSettings() {
   return (
     <div>
       <Container>
-        <Button>Update Profile</Button>
+        <Link to="updateProfile"><Button>Update Profile</Button></Link>
         <Button color="primary" onClick={handleLogout}>
           Log Out
         </Button>
         {error && <Alert color="danger">{error}</Alert>}
+        <Outlet/>
       </Container>
     </div>
   );

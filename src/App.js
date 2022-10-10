@@ -19,6 +19,7 @@ import Categories from "./Pages/Categories";
 import Bag from "./Pages/Bag";
 import List from "./Pages/List";
 import ProductPage from "./Components/ProductPage";
+import UpdateProfile from "./Components/UpdateProfile";
 
 function App() {
 	const [user, setUser] = useState(null);
@@ -134,7 +135,9 @@ function App() {
 					<Route path="favorites" element={<Favorites />} />
 					<Route path="profile" element={<Profile user={user} />}>
 						<Route path="orders" element={<Orders />} />
-						<Route path="settings" element={<AccountSettings />} />
+						<Route path="settings" element={<AccountSettings />} >
+							<Route path="updateProfile" element={<UpdateProfile/>}/>
+						</Route>
 					</Route>
 					<Route path="my-bag" element={<Bag />} />
 					<Route path="/products/:id" element={<List />} />

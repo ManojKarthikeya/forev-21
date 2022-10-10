@@ -18,6 +18,10 @@ export function AuthProvider({ children }) {
     return auth.signInWithEmailAndPassword(email, password);
   }
 
+  function updatePassword(password){
+    return currentUser.updatePassword(password);
+  }
+
   function resetPassword(email) {
     return auth.sendPasswordResetEmail(email);
   }
@@ -39,6 +43,7 @@ export function AuthProvider({ children }) {
     signUP,
     logOut,
     resetPassword,
+    updatePassword
   };
   return (
     <div>
