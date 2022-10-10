@@ -10,7 +10,12 @@ import {
 	CardTitle,
 	Container,
 } from "reactstrap";
-import { addToShoppingBag, removeFromShoppingBag } from "../store/actions";
+import { auth } from "../firebaseinitial";
+import {
+	addToShoppingBag,
+	getShoppingBag,
+	removeFromShoppingBag,
+} from "../store/actions";
 
 export default function Bag({ user }) {
 	const dispatch = useDispatch();
@@ -22,11 +27,15 @@ export default function Bag({ user }) {
 	}));
 
 	useEffect(() => {
+		dispatch(getShoppingBag());
+	}, [user]);
+
+	useEffect(() => {
 		setBagList(shoppingBag);
 		setBagIdList(shoppingBag.map((item) => item.ProductId));
-	}, [shoppingBag]);
+	}, [shoppingBag, user]);
 
-	console.log(bagList);
+	console.log(shoppingBag);
 	if (bagList.length) {
 		return (
 			<div>
@@ -166,7 +175,9 @@ export default function Bag({ user }) {
 					}}
 				>
 					<div className="display-5">Your Shopping Bag is Empty</div>
-					<div className="text-sm-center">Add products to your bag to check out.</div>
+					<div className="text-sm-center">
+						Add products to your bag to check out.
+					</div>
 				</div>
 			</Container>
 		);

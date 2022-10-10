@@ -1,4 +1,6 @@
 import axios from "axios";
+import { doc, getDoc, setDoc } from "firebase/firestore/lite";
+import { auth, db } from "../firebaseinitial";
 import { XRapidAPIHost, XRapidAPIKey } from "./Key";
 
 export const getProductsCall = async (id) => {
@@ -43,4 +45,54 @@ export const getProductCall = async (id) => {
 			console.error(error);
 		});
 	return data;
+};
+
+export const getShoppingBagData = async () => {
+	const docRef = doc(db, "spandu&manu", auth.currentUser.email);
+	const docSnap = await getDoc(docRef);
+	return docSnap.data().ShoppingBag;
+};
+
+// const ShoppingBagHandler = (productData, pSize, shoppingBag) => {
+// 	const presentDoc = doc(db, "spandu&manu", "someUser@gmail.com");
+// 	setDoc(
+// 		presentDoc,
+// 		{
+// 			ShoppingBag: [
+// 				...shoppingBag,
+// 				{
+// 					DefaultProductImage:
+// 						productData.product.DefaultProductImage,
+// 					DisplayName: productData.product.DisplayName,
+// 					ListPrice: productData.product.ListPrice,
+// 					productId: productData.product.ProductId,
+// 					productSize: pSize,
+// 				},
+// 			],
+// 		},
+// 		{ merge: true }
+// 	);
+// };
+
+// const removeFromShoppinBag = (shoppingBag) => {
+//     const presentDoc = doc(db, "spandu&manu", "someUser@gmail.com");
+//     setDoc(
+//       presentDoc,
+//       {
+//         ShoppingBag: shoppingBag.filter((prod)=>prod.productId !== productData.product.ProductId),
+//       },
+//       { merge: true }
+//     )
+//   };
+
+export const updateShoppingBagData = (shoppingBag) => {
+	const presentDoc = doc(db, "spandu&manu", auth.currentUser.email);
+	setDoc(
+		presentDoc,
+		{
+			ShoppingBag: shoppingBag,
+		},
+		{ merge: true }
+	);
+	return shoppingBag
 };

@@ -90,7 +90,7 @@ const reducer = (state = INITIAL_STATE, action) => {
 		case GET_SHOPPING_BAG_SUCCESS:
 			return {
 				...state,
-				shoppingBag: action.payload,
+				shoppingBag: [...action.payload],
 			};
 
 		case ADD_TO_SHOPPING_BAG_SUCCESS:

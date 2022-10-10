@@ -194,7 +194,7 @@ function App() {
 							/>
 						</Route>
 					</Route>
-					<Route path="my-bag" element={<Bag />} />
+					<Route path="my-bag" element={<Bag />} user={user} />
 					<Route path="/products/:id" element={<List />} />
 					<Route
 						path="product/:id"
