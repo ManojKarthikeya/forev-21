@@ -6,7 +6,7 @@ import {
 	getProductsSuccess,
 	getProductSuccess,
 } from "./actions";
-import { GET_PRODUCT, GET_PRODUCTS } from "./actionTypes";
+import { GET_ORDERS, GET_PRODUCT, GET_PRODUCTS, GET_SHOPPING_BAG } from "./actionTypes";
 
 function* getProducts({ payload: id }) {
 	try {
@@ -30,7 +30,31 @@ function* getProduct({ payload: id }) {
 	}
 }
 
+function* getOrders() {
+	try {
+		console.log("API called!");
+		const response = yield call(getProductCall);
+		console.log(response);
+		yield put(getProductSuccess(response));
+	} catch (error) {
+		yield put(getProductFail(error));
+	}
+}
+
+function* getShoppingBag({ payload: id }) {
+	try {
+		console.log("API called!");
+		const response = yield call(getProductCall);
+		console.log(response);
+		yield put(getProductSuccess(response));
+	} catch (error) {
+		yield put(getProductFail(error));
+	}
+}
+
 export default function* rootSaga() {
 	yield takeEvery(GET_PRODUCTS, getProducts);
 	yield takeEvery(GET_PRODUCT, getProduct);
+	yield takeEvery(GET_ORDERS,getOrders)
+	yield takeEvery(GET_SHOPPING_BAG,getShoppingBag)
 }

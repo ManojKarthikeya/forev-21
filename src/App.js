@@ -1,4 +1,15 @@
-import { Modal, Nav, Navbar, NavbarBrand, NavItem, NavLink } from "reactstrap";
+import {
+	DropdownItem,
+	DropdownMenu,
+	DropdownToggle,
+	Modal,
+	Nav,
+	Navbar,
+	NavbarBrand,
+	NavItem,
+	NavLink,
+	UncontrolledDropdown,
+} from "reactstrap";
 import "./App.css";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "bootstrap-icons/font/bootstrap-icons.css";
@@ -6,7 +17,7 @@ import { Link, Route, Routes, useLocation } from "react-router-dom";
 import Homepage from "./Pages/Homepage";
 import Favorites from "./Pages/Favorites";
 import { useEffect, useState } from "react";
-import { AuthProvider } from "./contexts/AuthContext";
+import { AuthProvider, useAuth } from "./contexts/AuthContext";
 import SignUp from "./Components/SignUp";
 import SignIn from "./Components/SignIn";
 import Profile from "./Components/Profile";
@@ -40,6 +51,7 @@ function App() {
 		setModal(!modal);
 		setLog("logIn");
 	};
+
 	return (
 		<AuthProvider>
 			<div className="App">
@@ -67,19 +79,58 @@ function App() {
 						<NavItem className="align-items-center">
 							{user ? (
 								<NavLink>
-									<Link
-										style={{
-											cursor: "pointer",
-											textDecoration: "none",
-											fontSize: "15px",
-											fontWeight: "600",
-										}}
-										className="text-secondary"
-										to="/profile"
-									>
-										<i className="bi bi-person-fill mx-2"></i>{" "}
-										My Account
-									</Link>
+									<UncontrolledDropdown>
+										<DropdownToggle
+											className="card-drop"
+											tag={"span"}
+										>
+											<div
+												style={{
+													cursor: "pointer",
+													fontSize: "15px",
+													fontWeight: "600",
+												}}
+												className="text-secondary"
+											>
+												<i className="bi bi-person-fill mx-2"></i>
+												My Account
+											</div>
+										</DropdownToggle>
+										<DropdownMenu className="dropdown-menu-end">
+											<DropdownItem>
+												<Link
+													style={{
+														textDecoration: "none",
+													}}
+													to="/profile"
+												>
+													<div
+														style={{
+															fontSize: "14px",
+															fontWeight: 600,
+														}}
+														className="text-secondary"
+													>
+														Profile
+													</div>
+												</Link>
+											</DropdownItem>
+											<DropdownItem>
+												<div
+													onClick={() => {
+														auth.signOut();
+													}}
+													style={{
+														fontSize: "14px",
+														fontWeight: 600,
+													}}
+													className="text-secondary"
+												>
+													Sign Out
+												</div>
+											</DropdownItem>
+										</DropdownMenu>
+									</UncontrolledDropdown>
 								</NavLink>
 							) : (
 								<NavLink
@@ -97,7 +148,7 @@ function App() {
 							)}
 						</NavItem>
 						<NavItem>
-						<NavLink>
+							<NavLink>
 								<Link
 									to="/favorites"
 									className="text-secondary"
@@ -135,8 +186,11 @@ function App() {
 					<Route path="favorites" element={<Favorites />} />
 					<Route path="profile" element={<Profile user={user} />}>
 						<Route path="orders" element={<Orders />} />
-						<Route path="settings" element={<AccountSettings />} >
-							<Route path="updateProfile" element={<UpdateProfile/>}/>
+						<Route path="settings" element={<AccountSettings />}>
+							<Route
+								path="updateProfile"
+								element={<UpdateProfile />}
+							/>
 						</Route>
 					</Route>
 					<Route path="my-bag" element={<Bag />} />

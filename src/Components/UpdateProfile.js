@@ -56,29 +56,11 @@ function handleSubmit(e) {
   }
   return (
     <React.Fragment>
-      <Card>
-        <CardHeader>
-          <Row>
-            <Col>
-              <h2 className="display-6 mx-3">Update Profile</h2>
-            </Col>
-            <Col className="text-sm-end">
-              {/* <h3>
-                <i
-                  onClick={() => {
-                    props.togglefun();
-                  }}
-                  style={{ cursor: "pointer" }}
-                  className="bi bi-x "
-                ></i>
-              </h3> */}
-            </Col>
-          </Row>
-        </CardHeader>
+      <Card className="col-5" style={{borderRadius: 0}}>
         <CardBody className="px-5">
           {error && <Alert color="danger">{error}</Alert>}
           <Form onSubmit={handleSubmit}>
-            <FormGroup>
+            {/* <FormGroup>
               <Label for="email">Email</Label>
               <Input
                 type="email"
@@ -87,10 +69,10 @@ function handleSubmit(e) {
                 required
                 defaultValue={currentUser.email}
               ></Input>
-            </FormGroup>
+            </FormGroup> */}
             <FormGroup>
-              <Label for="password">Password</Label>
-              <Input
+              <Label tag={'h5'} for="password">Password</Label>
+              <Input style={{borderRadius: 0}}
                 type="password"
                 id="password"
                 innerRef={passwordRef}
@@ -98,8 +80,8 @@ function handleSubmit(e) {
               ></Input>
             </FormGroup>
             <FormGroup>
-              <Label for="password-confirmation">Password confirmation</Label>
-              <Input
+              <Label tag={'h5'} for="password-confirmation">Password confirmation</Label>
+              <Input  style={{borderRadius: 0}}
                 type="password"
                 id="password-confirmation"
                 innerRef={passwordConfirmRef}
@@ -107,25 +89,12 @@ function handleSubmit(e) {
               ></Input>
             </FormGroup>
             <Row className="d-flex justify-content-center">
-              <Button disabled={loading} color="success" className=" w-75 my-2">
+              <Button style={{borderRadius: 0}} disabled={loading} color="secondary" className=" w-75 my-2">
                 Update
               </Button>
             </Row>
           </Form>
         </CardBody>
-        <CardFooter>
-          <CardText className="mx-3 p-1">
-            {" "}
-            <CardLink
-            //   onClick={() => {
-            //     props.setLog("logIn");
-            //   }} style={{cursor:"pointer"}}
-            
-            >
-              Cancel
-            </CardLink>
-          </CardText>
-        </CardFooter>
       </Card>
     </React.Fragment>
   );
