@@ -1,4 +1,5 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
 import {
 	Card,
 	CardBody,
@@ -7,56 +8,31 @@ import {
 	Container,
 	Row,
 } from "reactstrap";
+import { getOrders } from "../store/actions";
 import UpdateProfile from "./UpdateProfile";
 
-export default function Profile(props) {
-	const [orders, setOrders] = useState([
-		{
-			date: "12-10-2022",
-			orderId: "32df2t4ds",
-			products: [
-				{
-					name: "Shirt",
-					price: "3421",
-					img: "https://picsum.photos/200",
-					quantity: 2,
-				},
-				{
-					name: "Pant",
-					price: "1234",
-					img: "https://picsum.photos/200",
-					quantity: 6,
-				},
-				{
-					name: "Shoes",
-					price: "590",
-					img: "https://picsum.photos/200",
-					quantity: 1,
-				},
-			],
-			totalPrice: 1234 + 3421,
-		},
-		{
-			date: "9-1-1998",
-			orderId: "ads3v22vd",
-			products: [
-				{
-					name: "Socks",
-					price: "12",
-					img: "https://picsum.photos/200",
-					quantity: 2,
-				},
-				{
-					name: "Shoes",
-					price: "590",
-					img: "https://picsum.photos/200",
-					quantity: 1,
-				},
-			],
-			totalPrice: 12 + 590,
-		},
-	]);
-	if (!props.user) {
+export default function Profile({user}) {
+
+	const dispatch = useDispatch();
+	const [bagList, setBagList] = useState([]);
+	const [tprice, setTPrice] = useState(0);
+
+	const { shoppingBag } = useSelector((state) => ({
+		shoppingBag: state.reducer.shoppingBag,
+	}));
+
+	useEffect(() => {
+		dispatch(getOrders());
+	}, [user, dispatch]);
+
+	useEffect(() => {
+		setBagList(shoppingBag);
+		let sum = 0
+		bagList.forEach((item)=>{sum += item.ListPrice})
+		setTPrice(Math.round(sum))
+	}, [shoppingBag, user]);
+
+	if (!user) {
 		return (
 			<Container fluid>
 				<div
@@ -97,7 +73,7 @@ export default function Profile(props) {
 								My Orders
 							</div>
 							<CardGroup className="w-100 d-flex p-3 flex-wrap">
-								{orders.map((order) => (
+								{/* {orders.map((order) => (
 									<Card
 										className=""
 										style={{
@@ -169,7 +145,7 @@ export default function Profile(props) {
 											</div>
 										</CardFooter>
 									</Card>
-								))}
+								))} */}
 							</CardGroup>
 						</div>
 					</Row>
