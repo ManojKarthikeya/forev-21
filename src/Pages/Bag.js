@@ -8,7 +8,9 @@ import {
 	CardGroup,
 	CardSubtitle,
 	CardTitle,
+	Col,
 	Container,
+	Row,
 } from "reactstrap";
 import { auth } from "../firebaseinitial";
 import {
@@ -20,7 +22,8 @@ import {
 export default function Bag({ user }) {
 	const dispatch = useDispatch();
 	const [bagList, setBagList] = useState([]);
-	const [bagIdList, setBagIdList] = useState([]);
+	// const [bagIdList, setBagIdList] = useState([]);
+	const [tprice, setTPrice] = useState(0);
 
 	const { shoppingBag } = useSelector((state) => ({
 		shoppingBag: state.reducer.shoppingBag,
@@ -28,11 +31,11 @@ export default function Bag({ user }) {
 
 	useEffect(() => {
 		dispatch(getShoppingBag());
-	}, [user]);
+	}, [user, dispatch]);
 
 	useEffect(() => {
 		setBagList(shoppingBag);
-		setBagIdList(shoppingBag.map((item) => item.ProductId));
+		// setBagIdList(shoppingBag.map((item) => item.ProductId));
 	}, [shoppingBag, user]);
 
 	console.log(shoppingBag);
@@ -51,115 +54,114 @@ export default function Bag({ user }) {
 							Check out and Place an order here!
 						</div>
 					</div>
-					<CardGroup>
+					<div>
 						{bagList.map((product) => (
 							<Card
-								className="col-4"
+								className="col-9 m-0 p-0"
 								style={{
 									borderRadius: 0,
-									minWidth: "300px",
-									maxWidth: "300px",
 								}}
 								onClick={() => {
 									console.log("asdasd");
 								}}
 							>
-								<img
-									className="m-3 mb-0"
-									src={`${product.DefaultProductImage}`}
-									alt="img"
-								/>
-								<CardBody className="d-flex flex-column">
-									<div>
-										<CardTitle className="m-0">
-											<div
-												style={{
-													fontWeight: 700,
-												}}
-											>
-												{product.DisplayName}
-											</div>
-										</CardTitle>
-										<CardSubtitle
-											className="text-secondary"
-											style={{ fontWeight: 700 }}
-										>
-											<div className="d-flex justify-content-between mt-1 mb-2">
-												<span>{product.Brand}</span>
-												<span
+								<CardBody className="d-flex flex-row p-0 m-0 mb-3">
+									<img
+										className="m-3 mb-0"
+										src={`${product.DefaultProductImage}`}
+										alt="img"
+										style={{ maxWidth: "150px" }}
+									/>
+									<div className="mx-2 my-3 d-flex flex-column justify-content-between w-100">
+										<div>
+											<div className="d-flex justify-content-between">
+												<div
 													style={{
-														fontSize: "19px",
-														fontWeight: "500",
+														fontSize: "26px",
+														fontWeight: 700,
 													}}
 												>
-													${product.ListPrice}
-												</span>
-											</div>
-										</CardSubtitle>
-									</div>
-									<div
-										className="d-flex justify-content-between"
-										style={{ marginTop: "auto" }}
-									>
-										<div>
-											<Button
-												color="success"
-												className="me-1"
-												style={{ borderRadius: 0 }}
-											>
-												<i className="bi bi-bag mx-2"></i>
-												Add to Bag
-											</Button>
-											<Link
-												to={`/product/${product.ProductId}`}
-											>
-												<Button
-													style={{ borderRadius: 0 }}
-												>
-													<i className="bi bi-box-arrow-up-right mx-1"></i>{" "}
-												</Button>
-											</Link>
-										</div>
-										<div>
-											{bagIdList.includes(
-												product.ProductId
-											) ? (
-												<i
+													{product.DisplayName}
+												</div>
+												<div
+													className="text-end mx-3"
 													style={{
-														fontSize: "25px",
-														color: "#de3163",
+														cursor: "pointer",
 													}}
 													onClick={() => {
 														dispatch(
 															removeFromShoppingBag(
-																product
+																bagList.filter(
+																	(prod) =>
+																		prod.productId !==
+																		product.productId
+																)
 															)
 														);
 													}}
-													className="bi bi-heart-fill"
-												></i>
-											) : (
-												<i
-													style={{
-														fontSize: "25px",
-														color: "#de3163",
-													}}
-													onClick={() => {
-														dispatch(
-															addToShoppingBag(
-																product
-															)
-														);
-													}}
-													className="bi bi-heart text-sm-end"
-												></i>
-											)}
+												>
+													<i
+														style={{
+															fontSize: "28px",
+														}}
+														className="bi bi-x"
+													/>
+												</div>
+											</div>
+											<div
+												style={{
+													fontSize: "24px",
+													fontWeight: 700,
+												}}
+											>
+												${product.ListPrice}
+											</div>
+										</div>
+										<div>
+											<div
+												style={{
+													fontSize: "24px",
+													fontWeight: 700,
+												}}
+											>
+												Size:{" " + product.productSize}
+											</div>
+											<div
+												style={{
+													fontSize: "24px",
+													fontWeight: 700,
+												}}
+											>
+												Quantity: 1
+											</div>
 										</div>
 									</div>
 								</CardBody>
 							</Card>
 						))}
-					</CardGroup>
+					</div>
+					<div className="col-9">
+						<div
+							style={{
+								fontSize: "26px",
+								fontWeight: 700,
+							}}
+							className="text-end m-3 mb-0"
+						>
+							Total Price: {tprice.toString()}
+						</div>
+						<div className="text-end m-3" style={{}}>
+							<Button
+								style={{
+									fontSize: "18px",
+									fontWeight: 500,
+								}}
+								className="text-end m-3"
+							>
+								Check out
+							</Button>
+						</div>
+					</div>
 				</Container>
 			</div>
 		);
