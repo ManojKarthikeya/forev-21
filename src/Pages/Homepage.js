@@ -20,7 +20,7 @@ export default function Homepage() {
 			dispatch(getSaleItems());
 	}, []);
 
-	console.log(saleItemsList);
+	console.log(saleItemsList.CatalogProducts);
 
 	return (
 		<React.Fragment>
