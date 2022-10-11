@@ -9,6 +9,8 @@ import {
 	GET_PRODUCTS_SUCCESS,
 	GET_PRODUCT_FAIL,
 	GET_PRODUCT_SUCCESS,
+	GET_SALE_ITEMS_FAIL,
+	GET_SALE_ITEMS_SUCCESS,
 	GET_SHOPPING_BAG,
 	GET_SHOPPING_BAG_SUCCESS,
 	REMOVE_FROM_FAVORITES,
@@ -23,10 +25,24 @@ const INITIAL_STATE = {
 	product: null,
 	orders: [],
 	shoppingBag: [],
+	saleItems : []
 };
 
 const reducer = (state = INITIAL_STATE, action) => {
 	switch (action.type) {
+
+		case GET_SALE_ITEMS_SUCCESS:
+			return {
+				...state,
+				saleItems : action.payload
+			}
+
+		case GET_SALE_ITEMS_FAIL:
+			return {
+				...state,
+				error : action.payload
+			}
+
 		case ADD_TO_FAVORITES:
 			return {
 				...state,

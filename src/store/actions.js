@@ -18,6 +18,9 @@ import {
 	GET_PRODUCTS_SUCCESS,
 	GET_PRODUCT_FAIL,
 	GET_PRODUCT_SUCCESS,
+	GET_SALE_ITEMS,
+	GET_SALE_ITEMS_FAIL,
+	GET_SALE_ITEMS_SUCCESS,
 	GET_SHOPPING_BAG,
 	GET_SHOPPING_BAG_FAIL,
 	GET_SHOPPING_BAG_SUCCESS,
@@ -151,3 +154,17 @@ export const removeFromShoppingBagFail = (error) => ({
 	type: REMOVE_FROM_SHOPPING_BAG_FAIL,
 	payload: error,
 });
+
+export const getSaleItems = () => ({
+	type : GET_SALE_ITEMS
+})
+
+export const getSaleItemsSuccess = (saleItems) => ({
+	type : GET_SALE_ITEMS_SUCCESS,
+	payload : saleItems
+})
+
+export const getSaleItemsFail = (error) => ({
+	type : GET_SALE_ITEMS_FAIL,
+	payload : error
+})

@@ -22,7 +22,6 @@ import {
 export default function Bag({ user }) {
 	const dispatch = useDispatch();
 	const [bagList, setBagList] = useState([]);
-	// const [bagIdList, setBagIdList] = useState([]);
 	const [tprice, setTPrice] = useState(0);
 
 	const { shoppingBag } = useSelector((state) => ({
@@ -35,10 +34,11 @@ export default function Bag({ user }) {
 
 	useEffect(() => {
 		setBagList(shoppingBag);
-		// setBagIdList(shoppingBag.map((item) => item.ProductId));
+		let sum = 0
+		bagList.forEach((item)=>{sum += item.ListPrice})
+		setTPrice(Math.round(sum))
 	}, [shoppingBag, user]);
 
-	console.log(shoppingBag);
 	if (bagList.length) {
 		return (
 			<div>
@@ -117,7 +117,7 @@ export default function Bag({ user }) {
 												${product.ListPrice}
 											</div>
 										</div>
-										<div>
+										<div className="text-secondary">
 											<div
 												style={{
 													fontSize: "24px",
@@ -148,15 +148,16 @@ export default function Bag({ user }) {
 							}}
 							className="text-end m-3 mb-0"
 						>
-							Total Price: {tprice.toString()}
+							Total Price: ${tprice.toString()}
 						</div>
 						<div className="text-end m-3" style={{}}>
 							<Button
 								style={{
 									fontSize: "18px",
 									fontWeight: 500,
+									borderRadius: 0
 								}}
-								className="text-end m-3"
+								className="text-end "
 							>
 								Check out
 							</Button>
