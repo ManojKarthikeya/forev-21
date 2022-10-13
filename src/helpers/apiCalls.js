@@ -9,8 +9,7 @@ export const getProductsCall = async (id) => {
 		method: "GET",
 		url: `https://apidojo-forever21-v1.p.rapidapi.com/products/v2/list?categoryName=${id}`,
 		headers: {
-			"X-RapidAPI-Key":
-				XRapidAPIKey,
+			"X-RapidAPI-Key": XRapidAPIKey,
 			"X-RapidAPI-Host": XRapidAPIHost,
 		},
 	};
@@ -53,7 +52,6 @@ export const getShoppingBagData = async () => {
 	return docSnap.data().ShoppingBag;
 };
 
-
 export const updateShoppingBagData = (shoppingBag) => {
 	const presentDoc = doc(db, "spandu&manu", auth.currentUser.email);
 	setDoc(
@@ -74,12 +72,8 @@ export const getOrdersData = async () => {
 
 export const placeOrderData = (orders) => {
 	const presentDoc = doc(db, "spandu&manu", auth.currentUser.email);
-	setDoc(
-		presentDoc,
-		{
-			Orders: orders,
-		},
-		{ merge: true }
-	);
+	setDoc(presentDoc, {
+		Orders:  orders ? orders : [],
+	});
 	return orders;
 };

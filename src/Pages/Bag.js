@@ -14,7 +14,9 @@ import {
 } from "reactstrap";
 import { auth } from "../firebaseinitial";
 import {
+	addOrder,
 	addToShoppingBag,
+	getOrders,
 	getShoppingBag,
 	removeFromShoppingBag,
 } from "../store/actions";
@@ -22,23 +24,37 @@ import {
 export default function Bag({ user }) {
 	const dispatch = useDispatch();
 	const [bagList, setBagList] = useState([]);
+	const [orderList, setOrderList] = useState([]);
 	const [tprice, setTPrice] = useState(0);
 
-	const { shoppingBag } = useSelector((state) => ({
+	const { shoppingBag, orders } = useSelector((state) => ({
 		shoppingBag: state.reducer.shoppingBag,
+		orders: state.reducer.orders,
 	}));
 
 	useEffect(() => {
 		dispatch(getShoppingBag());
+		dispatch(getOrders());
 	}, [user, dispatch]);
 
 	useEffect(() => {
+		if (orders) {
+			setOrderList(orders);
+		}
+	}, [orders, user]);
+
+	useEffect(() => {
 		setBagList(shoppingBag);
-		let sum = 0
-		bagList.forEach((item)=>{sum += item.ListPrice})
-		setTPrice(Math.round(sum))
 	}, [shoppingBag, user]);
 
+	useEffect(() => {
+		let sum = 0;
+		bagList.forEach((item) => {
+			sum += item.ListPrice;
+		});
+		setTPrice(Math.round(sum));
+	}, [bagList]);
+	console.log(orderList);
 	if (bagList.length) {
 		return (
 			<div>
@@ -60,9 +76,6 @@ export default function Bag({ user }) {
 								className="col-9 m-0 p-0"
 								style={{
 									borderRadius: 0,
-								}}
-								onClick={() => {
-									console.log("asdasd");
 								}}
 							>
 								<CardBody className="d-flex flex-row p-0 m-0 mb-3">
@@ -155,9 +168,25 @@ export default function Bag({ user }) {
 								style={{
 									fontSize: "18px",
 									fontWeight: 500,
-									borderRadius: 0
+									borderRadius: 0,
 								}}
 								className="text-end "
+								onClick={() => {
+									dispatch(
+										addOrder([
+											...orderList,
+											{
+												orderId: Math.round(
+													Math.random() * 1000
+												),
+												orderDate:
+													Date.now().toString(),
+												products: bagList,
+												totalPrice: tprice,
+											},
+										])
+									);
+								}}
 							>
 								Check out
 							</Button>

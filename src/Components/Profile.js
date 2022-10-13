@@ -11,14 +11,12 @@ import {
 import { getOrders } from "../store/actions";
 import UpdateProfile from "./UpdateProfile";
 
-export default function Profile({user}) {
-
+export default function Profile({ user }) {
 	const dispatch = useDispatch();
-	const [bagList, setBagList] = useState([]);
-	const [tprice, setTPrice] = useState(0);
+	const [orderList, setOrderList] = useState([]);
 
-	const { shoppingBag } = useSelector((state) => ({
-		shoppingBag: state.reducer.shoppingBag,
+	const { orders } = useSelector((state) => ({
+		orders: state.reducer.orders,
 	}));
 
 	useEffect(() => {
@@ -26,11 +24,8 @@ export default function Profile({user}) {
 	}, [user, dispatch]);
 
 	useEffect(() => {
-		setBagList(shoppingBag);
-		let sum = 0
-		bagList.forEach((item)=>{sum += item.ListPrice})
-		setTPrice(Math.round(sum))
-	}, [shoppingBag, user]);
+		setOrderList(orders);
+	}, [orders, user]);
 
 	if (!user) {
 		return (
@@ -73,7 +68,7 @@ export default function Profile({user}) {
 								My Orders
 							</div>
 							<CardGroup className="w-100 d-flex p-3 flex-wrap">
-								{/* {orders.map((order) => (
+								{orderList.map((order) => (
 									<Card
 										className=""
 										style={{
@@ -93,7 +88,7 @@ export default function Profile({user}) {
 														{order.orderId}
 													</span>
 												</div>
-												<div>{order.date}</div>
+												<div>{order.orderDate}</div>
 											</div>
 											<div className="d-flex w-100 flex-wrap">
 												{order.products.map(
@@ -110,22 +105,22 @@ export default function Profile({user}) {
 																		Name :
 																	</span>
 																	{" " +
-																		product.name}
+																		product.DisplayName}
 																</div>
 																<div>
 																	<span>
 																		Price :
 																	</span>
 																	{" " +
-																		product.price}
+																		product.ListPrice}
 																</div>
 																<div>
 																	<span>
-																		Quanitiy
+																		Size
 																		:
 																	</span>
 																	{" " +
-																		product.quantity}
+																		product.productSize}
 																</div>
 															</div>
 														</div>
@@ -145,7 +140,7 @@ export default function Profile({user}) {
 											</div>
 										</CardFooter>
 									</Card>
-								))} */}
+								))}
 							</CardGroup>
 						</div>
 					</Row>

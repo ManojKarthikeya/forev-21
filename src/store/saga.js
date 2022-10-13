@@ -1,5 +1,6 @@
 import { call, put, takeEvery } from "redux-saga/effects";
 import {
+	getOrdersData,
 	getProductCall,
 	getProductsCall,
 	getShoppingBagData,
@@ -83,7 +84,7 @@ function* removeFromShoppingBag({payload : shoppingBag}) {
 
 function* getOrders() {
 	try {
-		const response = yield call(getShoppingBagData);
+		const response = yield call(getOrdersData);
 		console.log(response);
 		yield put(getOrdersSuccess(response));
 	} catch (error) {
@@ -96,6 +97,7 @@ function* placeOrder({payload : orders}) {
 		const response = yield call(placeOrderData, orders);
 		console.log(response);
 		yield put(getOrdersSuccess(orders));
+		yield put(getShoppingBagSuccess([]))
 	} catch (error) {
 		yield put(getOrdersFail(error));
 	}
