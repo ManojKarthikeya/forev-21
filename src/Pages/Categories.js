@@ -51,9 +51,7 @@ export default function Categories() {
 										style={{ maxWidth: "50vh" }}
 									>
 										<DropdownItem
-											href={`products/${subCategory.Category}`}
-											className=""
-											style={{
+											style={{ cursor: 'pointer !important',
 												color: colors[
 													`${mainCategory.Key}`
 												],

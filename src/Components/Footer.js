@@ -72,11 +72,6 @@ export default function App() {
                   Change Password
                 </Link>
               </p>
-              <p>
-                <Link to='/profile' className='text-reset'>
-                  Log out
-                </Link>
-              </p>
             </MDBCol>
 
             <MDBCol md="4" lg="3" xl="3" className='mx-auto mb-md-0 mb-4 mt-3'>

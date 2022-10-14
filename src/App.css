@@ -13,21 +13,21 @@
     border-bottom: 3px solid !important;
 }
 
-h3{
-    font-weight:'100';
-    font-size:'20px'
+h3 {
+    font-weight: '100';
+    font-size: '20px'
 }
 
-.hello{
+.hello {
     color: gray;
-    
+
 }
 
-.avatar-big{
+.avatar-big {
     /* height:100px;
     width:100px; */
-    height: 18vh;
-    width : 18vh;
+    height: 16vh;
+    width: 16vh;
 }
 
 .avatar-img {
@@ -35,8 +35,108 @@ h3{
     height: 100%;
     -o-object-fit: cover;
     object-fit: cover;
+}
+
+.rounded-circle {
+    border-radius: 50% !important;
+}
+
+.carousel-caption :last-child {
+    color: grey;
+    font-weight: 700;
+    -webkit-backdrop-filter: blur(3px);
+    backdrop-filter: saturate(0.8) blur(5px);
+}
+
+
+@-moz-keyframes squiggly-anim {
+    0% {
+        filter: url("#squiggly-0");
     }
-    
-    .rounded-circle {
-    border-radius: 50%!important;
+
+    25% {
+        filter: url("#squiggly-1");
     }
+
+    50% {
+        filter: url("#squiggly-2");
+    }
+
+    75% {
+        filter: url("#squiggly-3");
+    }
+
+    100% {
+        filter: url("#squiggly-4");
+    }
+}
+
+@-webkit-keyframes squiggly-anim {
+    0% {
+        filter: url("#squiggly-0");
+    }
+
+    25% {
+        filter: url("#squiggly-1");
+    }
+
+    50% {
+        filter: url("#squiggly-2");
+    }
+
+    75% {
+        filter: url("#squiggly-3");
+    }
+
+    100% {
+        filter: url("#squiggly-4");
+    }
+}
+
+@-o-keyframes squiggly-anim {
+    0% {
+        filter: url("#squiggly-0");
+    }
+
+    25% {
+        filter: url("#squiggly-1");
+    }
+
+    50% {
+        filter: url("#squiggly-2");
+    }
+
+    75% {
+        filter: url("#squiggly-3");
+    }
+
+    100% {
+        filter: url("#squiggly-4");
+    }
+}
+
+@keyframes squiggly-anim {
+    0% {
+        filter: url("#squiggly-0");
+    }
+
+    25% {
+        filter: url("#squiggly-1");
+    }
+
+    50% {
+        filter: url("#squiggly-2");
+    }
+
+    75% {
+        filter: url("#squiggly-3");
+    }
+
+    100% {
+        filter: url("#squiggly-4");
+    }
+}
+
+.test {
+    animation: squiggly-anim 0.45s linear infinite;
+  }
