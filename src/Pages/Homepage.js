@@ -2,7 +2,7 @@ import React from "react";
 import CustomCarousal from "../Components/Carousal";
 import CatHomePage from "../data/categoriesHomepage";
 
-import { Card, Container } from "reactstrap";
+import { Button, Card, Col, Container, Row } from "reactstrap";
 import { Link } from "react-router-dom";
 import Footer from "../Components/Footer";
 
@@ -92,7 +92,7 @@ export default function Homepage() {
 					</defs>
 				</svg>
 				<div
-					className="test text-center"
+					className="test text-center m-3"
 					style={{
 						fontSize: "50px",
 						fontWeight: 700,
@@ -101,23 +101,48 @@ export default function Homepage() {
 				>
 					HALLOWEEN SALE!
 				</div>
-				{/* <div
-					className="text-center"
-					style={{
-						fontSize: "25px",
-						fontWeight: 700,
-						color: "grey",
-					}}
-				>
-					Spooky dresses that are also fabulous
-				</div> */}
-				<div>
-					<img
-						src="https://unsplash.com/photos/TT-ROxWj9nA/download?ixid=MnwxMjA3fDB8MXxhbGx8fHx8fHx8fHwxNjY1NjgzNTI4&force=true&w=640"
-						alt="adasd"
-					/>
-				</div>
-				<div className="m-3">
+				<Row>
+					<Col>
+						<div className="mx-auto">
+							<img
+								style={{ minWidth: "300px" }}
+								className="col-11"
+								src="https://unsplash.com/photos/TT-ROxWj9nA/download?ixid=MnwxMjA3fDB8MXxhbGx8fHx8fHx8fHwxNjY1NjgzNTI4&force=true&w=640"
+								alt="adasd"
+							/>
+						</div>
+					</Col>
+					<Col>
+						<div
+							className="d-flex flex-column mt-5 align-items-center"
+							style={{
+								fontSize: "40px",
+								fontWeight: 600,
+								color: "grey",
+							}}
+						>
+							<div>
+								Get exclusive deals and prices on halloween
+								themed products.
+							</div>
+							<Link to="/products/promo_night_collection">
+								<Button
+									className="m-4"
+									style={{
+										borderRadius: 0,
+										fontSize: "24px",
+										fontWeight: 600,
+									}}
+									outline
+								>
+									Halloween Section{" "}
+									<i className="bi bi-arrow-right"></i>
+								</Button>
+							</Link>
+						</div>
+					</Col>
+				</Row>
+				<div className="m-4">
 					<div
 						style={{
 							fontSize: "40px",
@@ -158,7 +183,7 @@ export default function Homepage() {
 						</div>
 					</div>
 				</div>
-				<div className="m-3">
+				<div className="m-4">
 					<div
 						style={{
 							fontSize: "40px",
@@ -171,6 +196,45 @@ export default function Homepage() {
 					<div className="d-flex justify-content-center">
 						<CustomCarousal />
 					</div>
+				</div>
+				<div className="m-4">
+					<div
+						style={{
+							fontSize: "40px",
+							fontWeight: 700,
+							color: "grey",
+						}}
+					>
+						About Us
+					</div>
+					<Row>
+						<Col>
+							<div
+								className="d-flex flex-column mt-5 align-items-center"
+								style={{
+									fontSize: "34px",
+									fontWeight: 600,
+									color: "grey",
+								}}
+							>
+								<div className="m-1 my-3">
+									We are a sincere e-commerce start up with the
+									goal of providing our customers the best
+									they can get with their money.
+								</div>
+							</div>
+						</Col>
+						<Col>
+							<div className="m-1">
+								<img
+									style={{ minWidth: "300px" }}
+									className="col-11"
+									src="Spandu&Manu-1.jpg"
+									alt="adasd"
+								/>
+							</div>
+						</Col>
+					</Row>
 				</div>
 			</Container>
 			<div className="mt-5">

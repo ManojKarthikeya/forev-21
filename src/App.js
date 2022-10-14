@@ -72,7 +72,7 @@ function App() {
 				<Navbar>
 					<div className="d-flex align-items-center">
 						<NavbarBrand className="mx-2 me-4" href="/">
-							Spandu & Manu
+							<img style={{maxWidth : '150px'}} src='Spandu&Manu-1.png' alt='brand' />
 						</NavbarBrand>
 						<Categories />
 					</div>
