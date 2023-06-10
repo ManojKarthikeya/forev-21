@@ -41,12 +41,8 @@ export default function App() {
             <MDBCol md="3" lg="4" xl="3" className='mx-auto mb-4'>
               <div className='text-uppercase fw-bold mb-4 mt-3'>
                 {/* <MDBIcon icon="gem" className="me-3" /> */}
-                Spandu & Manu
+                Forev21
               </div>
-              <div>Developed by</div>
-              <p>
-              Asamani Manoj Karthikeya & Spandana Sirisinahal
-              </p>
             </MDBCol>
 
             <MDBCol md="2" lg="2" xl="2" className='mx-auto mb-4 mt-3'>
@@ -82,7 +78,7 @@ export default function App() {
               </p>
               <p>
                 <MDBIcon icon="envelope" className="me-3" />
-                spanduandmanu@gmail.com
+                forev21@gmail.com
               </p>
               <p>
                 <MDBIcon icon="phone" className="me-3" /> +91 1234567890

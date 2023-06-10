@@ -33,10 +33,6 @@ export default function Favorites() {
 		return (
 			<div>
 				<Container>
-					{/* <div className="text-secondary" style={{ fontWeight: 500 }}>
-						Spandu & Manu <i className="bi bi-caret-right-fill"></i>{" "}
-						{productList.CategoryDisplayName}{" "}
-					</div> */}
 					<div className="mx-3 my-3">
 						<div className="display-5" style={{ fontWeight: 700 }}>
 							Favorites

@@ -227,9 +227,9 @@ export default function Homepage() {
 						<Col>
 							<div className="m-1">
 								<img
-									style={{ minWidth: "300px" }}
+									style={{ maxWidth: "300px" }}
 									className="col-11"
-									src="Spandu&Manu-1.jpg"
+									src="forev21.png"
 									alt="adasd"
 								/>
 							</div>

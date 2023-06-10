@@ -84,8 +84,6 @@ export default function CustomCarousal() {
 		setActiveIndex(newIndex);
 	};
 
-	console.log(products);
-
 	const slides = products.map((item) => {
 		return (
 			<CarouselItem

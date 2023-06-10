@@ -56,7 +56,7 @@ export default function List() {
 			<div className="m-4">
 				<Container>
 					<div className="text-secondary" style={{ fontWeight: 500 }}>
-						Spandu & Manu <i className="bi bi-caret-right-fill"></i>{" "}
+						Forev21 <i className="bi bi-caret-right-fill"></i>{" "}
 						{productList.CategoryDisplayName}{" "}
 					</div>
 					<div className="mx-3 my-3">

@@ -47,13 +47,13 @@ export const getProductCall = async (id) => {
 };
 
 export const getShoppingBagData = async () => {
-	const docRef = doc(db, "spandu&manu", auth.currentUser.email);
+	const docRef = doc(db, "forev21", auth.currentUser.email);
 	const docSnap = await getDoc(docRef);
 	return docSnap.data().ShoppingBag;
 };
 
 export const updateShoppingBagData = (shoppingBag) => {
-	const presentDoc = doc(db, "spandu&manu", auth.currentUser.email);
+	const presentDoc = doc(db, "forev21", auth.currentUser.email);
 	setDoc(
 		presentDoc,
 		{
@@ -65,13 +65,13 @@ export const updateShoppingBagData = (shoppingBag) => {
 };
 
 export const getOrdersData = async () => {
-	const docRef = doc(db, "spandu&manu", auth.currentUser.email);
+	const docRef = doc(db, "forev21", auth.currentUser.email);
 	const docSnap = await getDoc(docRef);
 	return docSnap.data().Orders;
 };
 
 export const placeOrderData = (orders) => {
-	const presentDoc = doc(db, "spandu&manu", auth.currentUser.email);
+	const presentDoc = doc(db, "forev21", auth.currentUser.email);
 	setDoc(presentDoc, {
 		Orders:  orders ? orders : [],
 	});
